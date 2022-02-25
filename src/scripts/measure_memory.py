@@ -1,12 +1,12 @@
-# test_cpu_monitoring.py
-# Unit tests for 'monitoring' module.
+# measure_memory.py
+# Unit tests for 'measurement' module.
 
 import sys
 import argparse
 
 sys.path.append("../")
 
-from mlte.monitoring import monitor_cpu
+from mlte.measurement import measure_memory
 
 # Script exit codes
 EXIT_SUCCESS = 0
@@ -29,16 +29,15 @@ def monitor(pid: int):
     Monitor `pid` until exit.
     :param pid The ID of the process
     """
-    stats = monitor_cpu(pid)
-    print(f"Avg: {stats.avg:.1f}%\nMin: {stats.min:.1f}%\nMax: {stats.max:.1f}%")
+    stats = measure_memory(pid)
+    print(stats)
 
 
 def main() -> int:
     pid = parse_arguments()
     try:
         monitor(pid)
-    except Exception as e:
-        print(e)
+    except Exception:
         return EXIT_FAILURE
     return EXIT_SUCCESS
 

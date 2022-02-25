@@ -70,12 +70,12 @@ def file_size(path: str) -> int:
 Measure the CPU utilization of the training procedure with the `mlte` package:
 
 ```python
-from mlte.monitoring import monitor_cpu
+from mlte.monitoring import measure_cpu
 
 pid = # identifier of training process 
 
-stats = monitor_cpu(pid)
-print(stats.min, stats.max, stats.avg)
+stats = measure_cpu(pid)
+print(stats)
 ```
 
 **Training Memory Consumption**
@@ -86,12 +86,12 @@ print(stats.min, stats.max, stats.avg)
 Measure the memory consumption of the training procedure with the `mlte` package:
 
 ```python
-from mlte.monitoring import monitor_memory
+from mlte.monitoring import measure_memory
 
 pid = #  identifier of training process
 
-stats = monitor_memory(pid)
-print(stats.min, stats.max, stats.avg)
+stats = measure_memory(pid)
+print(stats)
 ```
 
 **Training Data Requirements**

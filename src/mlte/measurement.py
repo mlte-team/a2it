@@ -1,12 +1,12 @@
-# monitoring.py
-# Monitor machine learning models during training.
+# measurement.py
+# Measure machine learning model properties.
 
 import time
 import subprocess
 from subprocess import SubprocessError
 
 # -----------------------------------------------------------------------------
-# CPU Monitoring
+# CPU Measurement
 # -----------------------------------------------------------------------------
 
 
@@ -28,6 +28,14 @@ class CPUStatistics:
         self.min = min
         self.max = max
 
+    def __str__(self) -> str:
+        """Return a string representation of CPUStatistics."""
+        s = ""
+        s += f"Average: {self.avg:.1f}%\n"
+        s += f"Minimum: {self.min:.1f}%\n"
+        s += f"Maximum: {self.max:.1f}%"
+        return s
+
 
 def _get_cpu_usage(pid: int) -> float:
     """
@@ -46,7 +54,7 @@ def _get_cpu_usage(pid: int) -> float:
         return -1.0
 
 
-def monitor_cpu(pid: int, poll_interval: int = 1) -> CPUStatistics:
+def measure_cpu(pid: int, poll_interval: int = 1) -> CPUStatistics:
     """
     Monitor the CPU utilization of process at `pid` until exit.
     :param pid The process identifier
@@ -65,7 +73,7 @@ def monitor_cpu(pid: int, poll_interval: int = 1) -> CPUStatistics:
 
 
 # -----------------------------------------------------------------------------
-# Memory Monitoring
+# Memory Measurement
 # -----------------------------------------------------------------------------
 
 
@@ -87,6 +95,14 @@ class MemoryStatistics:
         self.min = min
         self.max = max
 
+    def __str__(self) -> str:
+        """Return a string representation of MemoryStatistics."""
+        s = ""
+        s += f"Average: {int(self.avg)}\n"
+        s += f"Minimum: {self.min}\n"
+        s += f"Maximum: {self.max}"
+        return s
+
 
 def _get_memory_usage(pid: int) -> int:
     """
@@ -94,22 +110,22 @@ def _get_memory_usage(pid: int) -> int:
     :param pid The identifier of the process
     :return The current memory usage in KB
     """
-
     # sudo pmap 917 | tail -n 1 | awk '/[0-9]K/{print $2}'
     try:
-        pmap = subprocess.Popen(["pmap", f"{pid}"], stdout=subprocess.PIPE)
-        tail = subprocess.Popen(
+        with subprocess.Popen(
+            ["pmap", f"{pid}"], stdout=subprocess.PIPE
+        ) as pmap, subprocess.Popen(
             ["tail", "-n", "1"], stdin=pmap.stdout, stdout=subprocess.PIPE
-        )
-        used = subprocess.check_output(["awk", "/[0-9]K/{print $2}"], stdin=tail.stdout)
-        pmap.wait()
-        tail.wait()
+        ) as tail:
+            used = subprocess.check_output(
+                ["awk", "/[0-9]K/{print $2}"], stdin=tail.stdout
+            )
         return int(used.decode("utf-8").strip()[:-1])
     except ValueError:
         return 0
 
 
-def monitor_memory(pid: int, poll_interval: int = 1) -> MemoryStatistics:
+def measure_memory(pid: int, poll_interval: int = 1) -> MemoryStatistics:
     """
     Monitor memory consumption of process at `pid` until exit.
     :param pid The process identifier
