@@ -11,7 +11,12 @@ We decompose modeling considerations into two components:
 **Prediction Accuracy / Error Rate**
 - Objective: Assess the ability of the model to perform the task for which it is designed.
 - Rationale: Prediction accuracy is self-evident.
-- Implementation: See task-appropriate model accuracy module.
+- Implementation: See task-appropriate model quality module.
+
+**Fairness**
+- Objective: Ensure the model is free of bias.
+- Rationale: Biased models result in a degraded user experience for certain sub-populations.
+- Implementation: See task-appropriate model quality module.
 
 **Model Size (Static)**
 - Objective: Assess the static size of a trained model.
@@ -50,10 +55,6 @@ def file_size(path: str) -> int:
 - Rationale: A model’s dynamic size is its size in a serialized form that is appropriate for transport over the network. The dynamic size of the model determines the difficulty (time requirement) of transporting the model. This concern manifests both internally during development of an automated training pipeline as well as externally during deployment. The dynamic size of a model may depend on the choice of serialization format, compression, and encryption, among other factors.
 - Implementation: See implementation for _Model Size (Static)_.
 
-**Fairness**
-- Objective: TODO
-- Rationale: TODO
-- Implementation: TODO
 
 ### Algorithm and Model Qualities (Training Costs)
 
