@@ -1,9 +1,40 @@
 # measurement.py
 # Measure machine learning model properties.
 
+import os
 import time
 import subprocess
 from subprocess import SubprocessError
+
+# -----------------------------------------------------------------------------
+# Model Size (Static and Dynamic)
+# -----------------------------------------------------------------------------
+
+
+def model_size(path: str) -> int:
+    """
+    Compute the size of the mdoel at `path`.
+    :param path The path to the model
+    """
+    if not os.path.isfile(path) and not os.path.isdir(path):
+        raise RuntimeError(f"Invalid path: {path}")
+
+    # If the model is just a file, return it immediately
+    if os.path.isfile(path):
+        return os.path.getsize(path)
+
+    # Otheriwse, the model must be directory
+    assert os.path.isdir(path), "Broken invariant."
+
+    total_size = 0
+    for dirpath, _, filenames in os.walk(path):
+        for name in filenames:
+            path = os.path.join(dirpath, name)
+            if not os.path.islink(path):
+                total_size += os.path.getsize(path)
+
+    return total_size
+
 
 # -----------------------------------------------------------------------------
 # CPU Measurement
