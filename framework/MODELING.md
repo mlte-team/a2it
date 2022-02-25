@@ -127,6 +127,8 @@ Inference Memory Consumption
 Notes:
 - Is it really realistic to talk about system-agnostic model qualities? Doesn’t every model quality ultimately depend on the system in which it is integrated, or should at least be informed by it?
 - I feel like Christian would not like this distinction…
+- Privacy (?)
+- Security (?)
 
 Resources:
 - Quality Attributes of ML Components
