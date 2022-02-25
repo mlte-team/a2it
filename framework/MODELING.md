@@ -43,11 +43,14 @@ Get-Item model | Measure-Object -Property Length -Sum
 Get-ChildItem model/ | Measure-Object -Property Length -Sum
 ```
 
-Programmatically measuring the file size may be the most useful when automating this procedure in an ML pipeline. In Python, use the `os` module to compute model size:
+Programmatically measuring the file size may be the most useful when automating this procedure in an ML pipeline. The `mlte` package provides functionality for measuring the size of models stored on the local filesystem:
 
 ```python
-def file_size(path: str) -> int:
-    return os.stat(path).st_size
+from mlte.measurement import model_size
+
+path = # the path to model on local filesystem
+size = model_size(path)
+print(size)
 ```
 	
 **Model Size (Dynamic)**
