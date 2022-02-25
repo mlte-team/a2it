@@ -100,10 +100,26 @@ print(stats.min, stats.max, stats.avg)
 - Implementation:
 
 ### Algorithm and Model Qualities (Inference Costs)
+
 Inference Latency
+- Objective:
+- Rationale:
+- Implementation:
+
 Inference Throughput
+- Objective:
+- Rationale:
+- Implementation:
+
 Inference CPU Consumption
+- Objective:
+- Rationale:
+- Implementation:
+
 Inference Memory Consumption
+- Objective:
+- Rationale:
+- Implementation:
 
 ### Algorithm and Model Qualities (Scalability)
 
