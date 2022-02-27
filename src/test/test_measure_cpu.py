@@ -10,7 +10,7 @@ import unittest
 import threading
 import subprocess
 
-from mlte.measurement import measure_cpu
+from mlte.measurement import cpu_utilization
 
 
 def support_path() -> str:
@@ -31,7 +31,7 @@ class TestMeasureCpu(unittest.TestCase):
     def test(self):
         prog = spin_for(5)
 
-        stat = measure_cpu(prog.pid)
+        stat = cpu_utilization(prog.pid)
         self.assertTrue(len(str(stat)) > 0)
 
 

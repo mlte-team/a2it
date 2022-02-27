@@ -73,11 +73,11 @@ print(size)
 Measure the CPU utilization of the training procedure with the `mlte` package:
 
 ```python
-from mlte.monitoring import measure_cpu
+from mlte.monitoring import cpu_utilization
 
 pid = # identifier of training process 
 
-stats = measure_cpu(pid)
+stats = cpu_utilization(pid)
 print(stats)
 ```
 
@@ -89,11 +89,11 @@ print(stats)
 Measure the memory consumption of the training procedure with the `mlte` package:
 
 ```python
-from mlte.monitoring import measure_memory
+from mlte.monitoring import memory_consumption
 
 pid = #  identifier of training process
 
-stats = measure_memory(pid)
+stats = memory_consumption(pid)
 print(stats)
 ```
 
@@ -104,22 +104,51 @@ print(stats)
 
 ### Algorithm and Model Qualities (Inference Costs)
 
-Inference Latency
+**Inference Latency (Mean)**
+- Objective: Measure the mean inference latency of a trained model.
+- Rationale: Inference latency refers to the time required for a trained model to make a single prediction given some input data.
+- Implementation: Measure the latency of the model across many inference requests and compute the mean. The measurement procedure will vary based on the deployment environment.
+
+Measure the mean latency of model inference with the `mlte` package:
+
+```python
+from mlte.measurement import mean_latency
+
+model = # trained model that implements __call__()
+d_gen = # input generator that implements __call__()
+
+latency = mean_latency(model, d_gen)
+print(f"Mean latency: {latency}ms")
+```
+
+**Inference Latency (Tail)**
+- Objective: Measure the tail inference latency of a trained model.
+- Rationale: Tail latency refers to the latency of model inference at the (right) tail of the latency distribution. In many production environments, mean latency does not adequately reflect the production viability of model in terms of its runtime requirements. Instead, tail latency provides a more informative measure of the guarantees we can provide about model runtime performance.
+- Implementation: Measure the latency of the model across many inference requests and compute the desired tail percentile. The measurement procedure will vary based on the deployment environment.
+
+Measure the tail latency of model inference with the `mlte` package. By default, the `tail_latency()` function computes the 99th percentile latency, but this value may be changed via a keyword argument.
+
+```python
+from mlte.measurement import tail_latency
+
+model = # trained model that implements __call__()
+d_gen = # input generator that implements __call__()
+
+latency = tail_latency(model, d_gen)
+print(f"Tail latency: {latency}ms")
+```
+
+**Inference Throughput**
 - Objective:
 - Rationale:
 - Implementation:
 
-Inference Throughput
+**Inference CPU Consumption**
 - Objective:
 - Rationale:
 - Implementation:
 
-Inference CPU Consumption
-- Objective:
-- Rationale:
-- Implementation:
-
-Inference Memory Consumption
+**Inference Memory Consumption**
 - Objective:
 - Rationale:
 - Implementation:
@@ -134,3 +163,4 @@ Notes:
 
 Resources:
 - Quality Attributes of ML Components
+- [The Tail at Scale](https://research.google/pubs/pub40801/)

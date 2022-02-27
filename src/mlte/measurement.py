@@ -4,6 +4,10 @@
 import os
 import time
 import subprocess
+import numpy as np
+
+from tqdm import tqdm
+from collections import deque
 from subprocess import SubprocessError
 
 # -----------------------------------------------------------------------------
@@ -85,7 +89,7 @@ def _get_cpu_usage(pid: int) -> float:
         return -1.0
 
 
-def measure_cpu(pid: int, poll_interval: int = 1) -> CPUStatistics:
+def cpu_utilization(pid: int, poll_interval: int = 1) -> CPUStatistics:
     """
     Monitor the CPU utilization of process at `pid` until exit.
     :param pid The process identifier
@@ -156,7 +160,7 @@ def _get_memory_usage(pid: int) -> int:
         return 0
 
 
-def measure_memory(pid: int, poll_interval: int = 1) -> MemoryStatistics:
+def memory_consumption(pid: int, poll_interval: int = 1) -> MemoryStatistics:
     """
     Monitor memory consumption of process at `pid` until exit.
     :param pid The process identifier
@@ -172,3 +176,55 @@ def measure_memory(pid: int, poll_interval: int = 1) -> MemoryStatistics:
         time.sleep(poll_interval)
 
     return MemoryStatistics(sum(stats) / len(stats), min(stats), max(stats))
+
+
+# -----------------------------------------------------------------------------
+# Latency Measurement
+# -----------------------------------------------------------------------------
+
+# The number of milliseconds in a second
+MS_PER_SEC = 1000
+
+
+def _timed(f) -> float:
+    """
+    Time the execution of function `f`.
+    :param f The function to execute
+    :return Execution time in milliseconds
+    """
+    start = time.time()
+    f()
+    return (time.time() - start) * MS_PER_SEC
+
+
+def mean_latency(model, input_generator, trials=10000) -> float:
+    """
+    Measure the mean latency of the input model.
+    :param model The trained model
+    :param input_generator Function that yields
+    a single input sample per invocation
+    :param trials The number of trials
+    :return Mean latency (ms)
+    """
+
+    times = deque()
+    for _ in tqdm(range(trials)):
+        times.append(_timed(lambda: model(input_generator())))
+    return np.mean(times)
+
+
+def tail_latency(model, input_generator, percentile=0.99, trials=10000):
+    """
+    Measure the tail latency of the input model.
+    :param model The trained model
+    :param input_generator Function that yields
+    a single input sample per invocation
+    :param percentile The percentile at which tail
+    latency is calculated (default 99th percentile)
+    :param trials The number of trials
+    :return Tail latency at `percentile`
+    """
+    times = deque()
+    for _ in tqdm(range(trials)):
+        times.append(_timed(lambda: model(input_generator())))
+    return np.quantile(times, percentile)

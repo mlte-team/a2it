@@ -6,7 +6,7 @@ import argparse
 
 sys.path.append("../")
 
-from mlte.measurement import measure_cpu
+from mlte.measurement import cpu_utilization
 
 # Script exit codes
 EXIT_SUCCESS = 0
@@ -29,7 +29,7 @@ def monitor(pid: int):
     Monitor `pid` until exit.
     :param pid The ID of the process
     """
-    stats = measure_cpu(pid)
+    stats = cpu_utilization(pid)
     print(stats)
 
 

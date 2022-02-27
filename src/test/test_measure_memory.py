@@ -10,7 +10,7 @@ import unittest
 import threading
 import subprocess
 
-from mlte.measurement import measure_memory
+from mlte.measurement import memory_consumption
 
 
 def support_path() -> str:
@@ -31,7 +31,7 @@ class TestMeasureCpu(unittest.TestCase):
     def test(self):
         prog = spin_for(5)
 
-        stat = measure_memory(prog.pid)
+        stat = memory_consumption(prog.pid)
         print(stat)
         self.assertTrue(len(str(stat)) > 0)
 
