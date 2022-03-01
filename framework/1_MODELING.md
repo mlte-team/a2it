@@ -4,7 +4,9 @@ This component of the framework considers the quality attributes of machine lear
 
 ### Model Properties
 
-We organize the _Modeling_ component of this framework in terms of model properties.
+We organize the _Modeling_ component of this framework in terms of model properties. Model properties are characteristics of machine learning models and the algorithms that produce them that are relevant when integrating the model in the context of a larger system.
+
+We enumerate many model properties below, and this is not an exhaustive list. When comparing models with these properties, it will likely be extremely rare to find one model that dominates all other models along all dimensions. For this reason, we recommend selecting the subset of these properties that are most relevant for your application. Determing the subset to select is accomplished through requirements engineering.
 
 **Structure**
 
@@ -13,7 +15,7 @@ Each of the properties defined below is organized as follows:
 - Objective: A brief, one-sentence summary of the property in question.
 - Metric: How the property is measured, and whether this property is _absolute_ or _relative_ (see below).
 - Rationale: The reason that the property is included in this enumeration. Why it may be an important consideration for your project. 
-- Implementation: A proposal or proposals for methods by which to evaluate the metric in your system.
+- Implementation: Proposals for methods by which you might evaluate the metric in your system.
 
 **Absolute and Relative Metrics**
 
@@ -24,9 +26,9 @@ Each of the model properties listed below has an associated metric. This metric 
 
 **Usage**
 
-TODO
+Determine the relevant set of properties for your application. Track the values of the metrics associated with these properties both across models (initially) and within one model over time. For metric tracking, we recommend existing experiment tracking services such as [MlFlow Tracking](https://mlflow.org/docs/latest/tracking.html) or [Weights and Biases Experiments](https://wandb.ai/site/experiment-tracking).
 
-### Algorithm and Model Qualities (General)
+### Algorithm and Model Qualities: General
 
 **Prediction Accuracy / Error Rate**
 - Objective: Assess the ability of the model to perform the task for which it is designed.
@@ -82,7 +84,7 @@ print(size)
 - Rationale: A model’s dynamic size is its size in a serialized form that is appropriate for transport (e.g. via removable media, or over the network). The dynamic size of the model determines the difficulty (time requirement) of transporting the model. This concern manifests both internally during development of an automated training pipeline as well as externally during deployment. The dynamic size of a model may depend on the choice of serialization format, compression, and encryption, among other factors.
 - Implementation: See implementation for _Model Size (Static)_.
 
-### Algorithm and Model Qualities (Training Costs)
+### Algorithm and Model Qualities: Training Costs
 
 **Training Time**
 - Objective: Measure the total time required to train the model.
@@ -124,18 +126,17 @@ stats = memory_consumption(pid)
 print(stats)
 ```
 
+TODO(Kyle): Write a more accurate wrapper with a simple heap profiler.
+
 **Training Energy Consumption**
-- Objective:
-- Metric:
-- Rationale:
-- Implementation:
+- Objective: Measure the energy consumption of the model training process.
+- Metric: The energy consumed by the training process in joules (total power consumption over a time interval).
+- Rationale: For large-scale machine learning applications, energy consumption may be a major driver in the total cost of development and maintenance. The model training process is frequently the most energy-intensive stage of the machine learning pipeline.
+- Implementation: Energy consumption and power requirements are a relatively-new consideration in the field of machine learning. Accordingly, methods for convenient and accurate measurement are limited.
 
-**Training Data Requirements**
-- Objective:
-- Rationale:
-- Implementation:
+TODO(Kyle): Baseline energy measurements with PMC.
 
-### Algorithm and Model Qualities (Inference Costs)
+### Algorithm and Model Qualities: Inference Costs
 
 **Inference Latency (Mean)**
 - Objective: Measure the mean inference latency of a trained model.
@@ -197,7 +198,7 @@ print(f"Throughput: {t_put} requests per second")
 - Rationale: The computational requirements of model inference determine the load that it places on the system when performing inference. This is a key determinant in the compute resources required for model deployment. For example, a model for which inference is computationally inexpensive may be deployed to an instance with relatively light computational resources. This might allow for investment in other resources, such as memory capacity, for the instance to which the model is deployed.
 - Implementation: Measure the CPU utilization of the inference service. The setup for inference measurement may be more involved than training measurement because inference is often not run as a standalone process. 
 
-TODO
+TODO(Kyle): How to measure CPU utilization in inference-relevant environment?
 
 **Inference Memory Consumption**
 - Objective: Measure the peak and average memory consumption during model inference.
@@ -205,16 +206,22 @@ TODO
 - Rationale: The memory requirements of model inference determine the load that is places on the system during inference. This is a key determinant in the memory resources required for model deployment. For example, a model for which inference is not memory-intensive may be deployed to an instance with relatively light memory resources. This might allow for investment in other resources, such as core count, for the instance to which the model is deployed. 
 - Implementation: Measure the memory consumption of the process during the inference procedure.
 
-TODO
+TODO(Kyle): How to measure memory consumption in inference-relevant environment?
 
 **Inference Energy Consumption**
-- Objective:
-- Metric:
-- Rationale:
-- Implementation:
+- Objective: Measure the energy consumption of the model inference process.
+- Metric: The energy consumed by the inference process in joules (total power consumption over a time interval).
+- Rationale: For large-scale machine learning applications, energy consumption may be a major driver in the total cost of development and maintenance.
+- Implementation: Energy consumption and power requirements are a relatively-new consideration in the field of machine learning. Accordingly, methods for convenient and accurate measurement are limited.
 
-### Algorithm and Model Qualities (Scalability)
+TODO(Kyle): Baseline energy measurements with PMC.
 
+### Algorithm and Model Qualities: Scalability
+
+TODO:
+- Model size as a function of data size
+- Training time as a function of data size
+- Training cost (CPU, memory) as a function of data size
 
 ### References
 
@@ -228,3 +235,4 @@ Model Property Definition
 - [Model Quality: Slicing, Capabilities, Invariant, and Other Testing Strategies](https://ckaestne.medium.com/model-quality-slicing-capabilities-invariants-and-other-testing-strategies-27e456027bd)
 - [Quality Attributes of ML Components](https://ckaestne.medium.com/quality-drivers-in-architectures-for-ml-enabled-systems-836f21c44334)
 - [The Tail at Scale](https://research.google/pubs/pub40801/)
+- [Estimation of Energy Consumption in Machine Learning](https://www.sciencedirect.com/science/article/pii/S0743731518308773)
