@@ -1,10 +1,13 @@
 ## System Dependent Model Testing
+### Objective and Rationale
+Machine learning models and the systems into which they are integrated must be functional in their desired context, as well as robust and resilient to an array of potential adverse situations.  
+This section is dedicated to ensuring that model and system teams work together to identify properties and requirements at both the model and the system level. This includes weighing tradeoffs and considering the prioritization of properties ([Ribeiro et al. 2020](https://homes.cs.washington.edu/~wtshuang/static/papers/2020-acl-checklist.pdf)).
 
-This component of the framework considers the quality attributes of machine learning models in the context of the system into which they are integrated.
 
-### Model Properties
+### System Dependent Model Testing (SDMT) Properties
 
-TODO (Kyle): edit this part
+TODO(Kyle): please edit this part (previously titled 'model properties'), I feel like you have the best idea of how to frame the buckets. Also are we removing the categories within the property section?  
+
 We organize the _Modeling_ component of this framework in terms of model properties. Model properties are characteristics of machine learning models and the algorithms that produce them that are relevant when integrating the model in the context of a larger system.
 
 We enumerate many model properties below, and this is not an exhaustive list. When comparing models with these properties, it will likely be extremely rare to find one model that dominates all other models along all dimensions. For this reason, we recommend selecting the subset of these properties that are most relevant for your application. Determing the subset to select is accomplished through requirements engineering.
@@ -38,10 +41,16 @@ Determine the relevant set of properties for your application. Track the values 
 - Implementation: See task-appropriate model quality module.
 
 **Fairness**
-- Objective: Ensure the model is free of bias.
-- Metric: See task-appropriate model quality module.
-- Rationale: Biased models result in a degraded user experience for certain sub-populations.
-- Implementation: See task-appropriate model quality module.
+- Objective: Data and models should be free of bias to avoid unfair treatment of certain groups, to ensure a fair distribution of benefits and costs, and to offer those affected an opportunity to seek redress against adverse decisions made by the system or the humans operating it ([Chouldechova & Roth 2018](https://arxiv.org/pdf/1810.08810.pdf)). 
+- Metric: Statistical metrics of fairness include raw positive classification rate ([Feldman et al. 2015](https://arxiv.org/pdf/1412.3756v3.pdf)), false positive and false negative rates, or positive predictive value ([Chouldechova 2017](https://arxiv.org/pdf/1703.00056.pdf)). However, every fairness metric includes tradeoffs, so if this is important to the system then the model and system teams must have a conversation about the overall effects and the appropriate tradeoffs to ensure fairness.
+- Rationale: Biased models result in a degraded user experience for certain sub-populations, and can damage user trust in a system.
+- Implementation: Dependent on the chosen metric or tradeoff; see references section at the bottom of this page for more resources on fairness.
+
+**Interpretability**
+- Objective: Some systems necessitate an ability to be explained or presented in understandable terms to a human ([Doshi-Velez & Kim 2017](https://arxiv.org/pdf/1702.08608.pdf)). 
+- Metric: Interpretability is difficult to measure; it can be considered from an end-user perspective or from a developer perspective by observing and evaluating the interactions of these teams with the system, or having a domain expert explain model outputs in context ([Doshi-Velez & Kim 2017](https://arxiv.org/pdf/1702.08608.pdf)).
+- Rationale: Depending on the system purpose, it may be critical for the system to be explanable and understandable.
+- Implementation: Options include, among others: intrinsic interpretability in which a model is self explanatory, and post-hoc interpretability where another model is created to explain outputs from the first ([Du et al. 2019](https://arxiv.org/pdf/1808.00033.pdf)).
 
 **Model Size (Static)**
 - Objective: Measure the static size of a trained model.
@@ -237,3 +246,14 @@ Model Property Definition
 - [Quality Attributes of ML Components](https://ckaestne.medium.com/quality-drivers-in-architectures-for-ml-enabled-systems-836f21c44334)
 - [The Tail at Scale](https://research.google/pubs/pub40801/)
 - [Estimation of Energy Consumption in Machine Learning](https://www.sciencedirect.com/science/article/pii/S0743731518308773)
+
+Fairness  
+- Metrics of statistical fairness: [Certifying and Removing Disparate Impact](https://arxiv.org/pdf/1412.3756v3.pdf) and [Fair Prediction with Disparate Impact](https://arxiv.org/pdf/1703.00056.pdf)
+- Tradeoffs of individual versus statistical fairness: [The Frontiers of Fairness in Machine Learning](https://arxiv.org/pdf/1810.08810.pdf) 
+- Testing/measuring individual fairness: [On Formalizing Fairness in Prediction with Machine Learning](https://arxiv.org/pdf/1710.03184.pdf)
+- How to consider the dynamic effects of decisions on a system: [Downstream Effects of Affirmative Action](https://arxiv.org/pdf/1808.09004.pdf) and [Delayed Impact of Fair Machine Learning](http://proceedings.mlr.press/v80/liu18c/liu18c.pdf)
+- If you are familiar with the bias or skew of the data, an option is to use rank-preserving procedures for repairing features to reduce or remove pairwise dependence with the protected attribute: [Certifying and Removing Disparate Impact](https://arxiv.org/pdf/1412.3756v3.pdf)
+
+Interpretability
+- [Towards A Rigorous Science of Interpretable Machine Learning](https://arxiv.org/pdf/1702.08608.pdf)
+- [Techniques for Intepretable Machine Learning](https://arxiv.org/pdf/1808.00033.pdf)
