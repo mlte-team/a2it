@@ -1,9 +1,10 @@
-## System Framework: Modeling
+## System Dependent Model Testing
 
 This component of the framework considers the quality attributes of machine learning models in the context of the system into which they are integrated.
 
 ### Model Properties
 
+TODO (Kyle): edit this part
 We organize the _Modeling_ component of this framework in terms of model properties. Model properties are characteristics of machine learning models and the algorithms that produce them that are relevant when integrating the model in the context of a larger system.
 
 We enumerate many model properties below, and this is not an exhaustive list. When comparing models with these properties, it will likely be extremely rare to find one model that dominates all other models along all dimensions. For this reason, we recommend selecting the subset of these properties that are most relevant for your application. Determing the subset to select is accomplished through requirements engineering.
