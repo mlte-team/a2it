@@ -1,44 +1,45 @@
-## System Dependent Model Testing
+# System Dependent Model Testing
 ### Objective and Rationale
-Machine learning models and the systems into which they are integrated must be functional in their desired context, as well as robust and resilient to an array of potential adverse situations.  
-This section is dedicated to ensuring that model and system teams work together to identify properties and requirements at both the model and the system level. This includes weighing tradeoffs and considering the prioritization of properties ([Ribeiro et al. 2020](https://homes.cs.washington.edu/~wtshuang/static/papers/2020-acl-checklist.pdf)).
+Machine learning models and the systems into which they are integrated must be functional in their desired context, as well as robust to an array of potential circumstances.  
+This section lists properties that should be considered for model and system requirements and how those are prioritized, including weighing tradeoffs ([Ribeiro et al. 2020](https://homes.cs.washington.edu/~wtshuang/static/papers/2020-acl-checklist.pdf)). We recommend selecting the subset of these properties that are most relevant for your application. Ensure that you track the values of the metrics associated with these properties; we recommend existing experiment tracking services such as [MlFlow Tracking](https://mlflow.org/docs/latest/tracking.html) or [Weights and Biases Experiments](https://wandb.ai/site/experiment-tracking). 
 
-
-### System Dependent Model Testing (SDMT) Properties
-
-TODO(Kyle): please edit this part (previously titled 'model properties'), I feel like you have the best idea of how to frame the buckets. Also are we removing the categories within the property section?  
-
-We organize the _Modeling_ component of this framework in terms of model properties. Model properties are characteristics of machine learning models and the algorithms that produce them that are relevant when integrating the model in the context of a larger system.
-
-We enumerate many model properties below, and this is not an exhaustive list. When comparing models with these properties, it will likely be extremely rare to find one model that dominates all other models along all dimensions. For this reason, we recommend selecting the subset of these properties that are most relevant for your application. Determing the subset to select is accomplished through requirements engineering.
+## System Dependent Model Testing (SDMT) Properties
 
 **Structure**
 
-Each of the properties defined below is organized as follows:
+The properties are organized into four categoris: 
+- Functionality
+- Robustness
+- Costs
+- Scalability   
 
+Each of the properties is organized as follows:
 - Objective: A brief, one-sentence summary of the property in question.
-- Metric: How the property is measured, and whether this property is _absolute_ or _relative_ (see below).
-- Rationale: The reason that the property is included in this enumeration. Why it may be an important consideration for your project. 
+- Metric: How the property is measured.
+- Rationale: The reason that the property is included in this enumeration; why it may be an important consideration for your project. 
 - Implementation: Proposals for methods by which you might evaluate the metric in your system.
 
-**Absolute and Relative Metrics**
-
-Each of the model properties listed below has an associated metric. This metric is always defined as either absolute or relative.
-
-- An _absolute_ metric is one for which the platform on which it is measured is immaterial. An example of an absolute metric is static model size. We expect that the storage requirements for a model will be stable across changes to the filesystem on which the model is stored or the underlying hardware.
-- A _relative_ metric is one for which the platform on which it is measured influences the metric itself. An example of a relative metric is CPU utilization. The percentage of CPU consumed by the model training process is dependent on the total computational resources available to the machine.
-
-**Usage**
-
-Determine the relevant set of properties for your application. Track the values of the metrics associated with these properties both across models (initially) and within one model over time. For metric tracking, we recommend existing experiment tracking services such as [MlFlow Tracking](https://mlflow.org/docs/latest/tracking.html) or [Weights and Biases Experiments](https://wandb.ai/site/experiment-tracking).
-
-### Algorithm and Model Qualities: General
+### Functionality
 
 **Prediction Accuracy / Error Rate**
 - Objective: Assess the ability of the model to perform the task for which it is designed.
 - Metric: See task-appropriate model quality module.
 - Rationale: Prediction accuracy is self-evident.
 - Implementation: See task-appropriate model quality module.
+
+**Fairness**
+- Objective: Data and models should be free of bias to avoid unfair treatment of certain groups, to ensure a fair distribution of benefits and costs, and to offer those affected an opportunity to seek redress against adverse decisions made by the system or the humans operating it ([Chouldechova & Roth 2018](https://arxiv.org/pdf/1810.08810.pdf)). 
+- Metric: Statistical metrics of fairness include raw positive classification rate ([Feldman et al. 2015](https://arxiv.org/pdf/1412.3756v3.pdf)), false positive and false negative rates, or positive predictive value ([Chouldechova 2017](https://arxiv.org/pdf/1703.00056.pdf)). However, every fairness metric includes tradeoffs, so if this is important to the system then the model and system teams must have a conversation about the overall effects and the appropriate tradeoffs to ensure fairness.
+- Rationale: Biased models result in a degraded user experience for certain sub-populations, and can damage user trust in a system.
+- Implementation: Dependent on the chosen metric or tradeoff; see references section at the bottom of this page for more resources on fairness.
+
+**Interpretability**
+- Objective: Some systems necessitate an ability to be explained or presented in understandable terms to a human ([Doshi-Velez & Kim 2017](https://arxiv.org/pdf/1702.08608.pdf)). 
+- Metric: Interpretability is difficult to measure; it can be considered from an end-user perspective or from a developer perspective by observing and evaluating the interactions of these teams with the system, or having a domain expert explain model outputs in context ([Doshi-Velez & Kim 2017](https://arxiv.org/pdf/1702.08608.pdf)).
+- Rationale: Depending on the system purpose, it may be critical for the system to be explanable and understandable.
+- Implementation: Options include, among others: intrinsic interpretability in which a model is self explanatory, and post-hoc interpretability where another model is created to explain outputs from the first ([Du et al. 2019](https://arxiv.org/pdf/1808.00033.pdf)).
+
+### Robustness
 
 **Robustness to Naturally Occuring Data Challenges**
 - Objective: Ensure that the model is robust to naturally occuring data challenges that it will encounter in the ambient conditions of the system ([Berghoff et al. 2021](https://link.springer.com/chapter/10.1007/978-3-030-79150-6_21)).
@@ -52,17 +53,7 @@ Determine the relevant set of properties for your application. Track the values 
 - Rationale: 
 - Implementation: Dependent on the identified adversary MLCO and MDCOA; see references section at the bottom of this page for more resources on this type of robustness
 
-**Fairness**
-- Objective: Data and models should be free of bias to avoid unfair treatment of certain groups, to ensure a fair distribution of benefits and costs, and to offer those affected an opportunity to seek redress against adverse decisions made by the system or the humans operating it ([Chouldechova & Roth 2018](https://arxiv.org/pdf/1810.08810.pdf)). 
-- Metric: Statistical metrics of fairness include raw positive classification rate ([Feldman et al. 2015](https://arxiv.org/pdf/1412.3756v3.pdf)), false positive and false negative rates, or positive predictive value ([Chouldechova 2017](https://arxiv.org/pdf/1703.00056.pdf)). However, every fairness metric includes tradeoffs, so if this is important to the system then the model and system teams must have a conversation about the overall effects and the appropriate tradeoffs to ensure fairness.
-- Rationale: Biased models result in a degraded user experience for certain sub-populations, and can damage user trust in a system.
-- Implementation: Dependent on the chosen metric or tradeoff; see references section at the bottom of this page for more resources on fairness.
-
-**Interpretability**
-- Objective: Some systems necessitate an ability to be explained or presented in understandable terms to a human ([Doshi-Velez & Kim 2017](https://arxiv.org/pdf/1702.08608.pdf)). 
-- Metric: Interpretability is difficult to measure; it can be considered from an end-user perspective or from a developer perspective by observing and evaluating the interactions of these teams with the system, or having a domain expert explain model outputs in context ([Doshi-Velez & Kim 2017](https://arxiv.org/pdf/1702.08608.pdf)).
-- Rationale: Depending on the system purpose, it may be critical for the system to be explanable and understandable.
-- Implementation: Options include, among others: intrinsic interpretability in which a model is self explanatory, and post-hoc interpretability where another model is created to explain outputs from the first ([Du et al. 2019](https://arxiv.org/pdf/1808.00033.pdf)).
+### Costs
 
 **Model Size (Static)**
 - Objective: Measure the static size of a trained model.
@@ -105,8 +96,6 @@ print(size)
 - Metric: The storage requirement for the model in bytes or some multiple thereof (e.g. kilobytes, megabytes, etc.). This metric is absolute.
 - Rationale: A model’s dynamic size is its size in a serialized form that is appropriate for transport (e.g. via removable media, or over the network). The dynamic size of the model determines the difficulty (time requirement) of transporting the model. This concern manifests both internally during development of an automated training pipeline as well as externally during deployment. The dynamic size of a model may depend on the choice of serialization format, compression, and encryption, among other factors.
 - Implementation: See implementation for _Model Size (Static)_.
-
-### Algorithm and Model Qualities: Training Costs
 
 **Training Time**
 - Objective: Measure the total time required to train the model.
@@ -157,8 +146,6 @@ TODO(Kyle): Write a more accurate wrapper with a simple heap profiler.
 - Implementation: Energy consumption and power requirements are a relatively-new consideration in the field of machine learning. Accordingly, methods for convenient and accurate measurement are limited.
 
 TODO(Kyle): Baseline energy measurements with PMC.
-
-### Algorithm and Model Qualities: Inference Costs
 
 **Inference Latency (Mean)**
 - Objective: Measure the mean inference latency of a trained model.
@@ -238,7 +225,7 @@ TODO(Kyle): How to measure memory consumption in inference-relevant environment?
 
 TODO(Kyle): Baseline energy measurements with PMC.
 
-### Algorithm and Model Qualities: Scalability
+### Scalability
 
 TODO:
 - Model size as a function of data size
