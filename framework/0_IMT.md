@@ -2,7 +2,7 @@
 ### Objective and Rationale
 Determining model performance and ensuring that it could add value is a critical step in building a machine learning tool or system ([Raschka 2018](https://arxiv.org/pdf/1811.12808.pdf)).  
 This section is dedicated to ensuring that a team building a machine learning model understands and can articulate their model requirements in order to prepare them for the next step of the process, which is system integration “[Machine Learning in Production: From Models to Systems](https://ckaestne.medium.com/machine-learning-in-production-from-models-to-systems-e1422ec7cd65)”).  
-### Internal Model Testing (IMT) Procedure
+## Internal Model Testing (IMT) Procedure
 1. This testing procedure makes several assumption of the preparation required for a model to be tested, meaning that it expects your team to have conducted a machine learning process, including (but not limited to):
     * Making a list of model requirements ranked in order of priority (if unsure how to rank your requirements, consider Case-Based Ranking from [Perini et al](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6249686)).
     * Gathering representative data for the problem you're trying to solve.
