@@ -40,6 +40,18 @@ Determine the relevant set of properties for your application. Track the values 
 - Rationale: Prediction accuracy is self-evident.
 - Implementation: See task-appropriate model quality module.
 
+**Robustness to Naturally Occuring Data Challenges**
+- Objective: Ensure that the model is robust to naturally occuring data challenges that it will encounter in the ambient conditions of the system ([Berghoff et al. 2021](https://link.springer.com/chapter/10.1007/978-3-030-79150-6_21)).
+- Metric: 
+- Rationale: Models implemented to a system will experience common data challenges like illumination, motion blue, occlusion, changes in perspective, and weather impacts. These peturbations affect the data and can have significant impacts on the quality of the model prediction which must be addressed before deployment. ([Russell & Norivg](http://aima.cs.berkeley.edu))
+- Implementation: Dependent on the identified data challenges; see references section at the bottom of this page for more resources on this type of robustness
+
+**Robustness to Adversarial Attack**
+- Objective: Ensure that the model is robust to sythentic manipulation or targeted adversarial attacks ([Hendrycks et al.](https://arxiv.org/pdf/2109.13916.pdf)).
+- Metric: 
+- Rationale: 
+- Implementation: Dependent on the identified adversary MLCO and MDCOA; see references section at the bottom of this page for more resources on this type of robustness
+
 **Fairness**
 - Objective: Data and models should be free of bias to avoid unfair treatment of certain groups, to ensure a fair distribution of benefits and costs, and to offer those affected an opportunity to seek redress against adverse decisions made by the system or the humans operating it ([Chouldechova & Roth 2018](https://arxiv.org/pdf/1810.08810.pdf)). 
 - Metric: Statistical metrics of fairness include raw positive classification rate ([Feldman et al. 2015](https://arxiv.org/pdf/1412.3756v3.pdf)), false positive and false negative rates, or positive predictive value ([Chouldechova 2017](https://arxiv.org/pdf/1703.00056.pdf)). However, every fairness metric includes tradeoffs, so if this is important to the system then the model and system teams must have a conversation about the overall effects and the appropriate tradeoffs to ensure fairness.
