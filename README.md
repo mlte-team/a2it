@@ -1,6 +1,6 @@
 # Army Artificial Intelligence Testing (A2IT)
 
-![Draft Diagram](https://github.com/turingcompl33t/a2it/blob/5428cb54dc54410bf03b9fe561d346ceb1417ffc/AI2T%20Draft%20Diagram.jpg)
+![Draft Diagram](https://github.com/turingcompl33t/a2it/blob/08d87f070d7371fa83a376bff566ea423bf8527c/Draft%20Diagram.jpg)
 
 This repository defines a framework for testing and evaluating Army machine learning and artificial intelligence models.  
 
