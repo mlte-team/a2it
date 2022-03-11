@@ -43,15 +43,15 @@ Each of the properties is organized as follows:
 
 **Robustness to Naturally Occuring Data Challenges**
 - Objective: Ensure that the model is robust to naturally occuring data challenges that it will encounter in the ambient conditions of the system ([Berghoff et al. 2021](https://link.springer.com/chapter/10.1007/978-3-030-79150-6_21)).
-- Metric: 
-- Rationale: Models implemented to a system will experience common data challenges like illumination, motion blue, occlusion, changes in perspective, and weather impacts. These peturbations affect the data and can have significant impacts on the quality of the model prediction which must be addressed before deployment. ([Russell & Norivg](http://aima.cs.berkeley.edu))
-- Implementation: Dependent on the identified data challenges; see references section at the bottom of this page for more resources on this type of robustness
+- Metric: Depending on the identified data challenges and the task specific properties, model robustness can be measured by a robustness score across the peturbation parameter space. This is a metric that calculates the fraction of correctly identified robust samples in the dataset. Reassessing the model accuracy with augmented datasets is also a common metric for robustness ([Berghoff et al. 2021](https://link.springer.com/chapter/10.1007/978-3-030-79150-6_21)).
+- Rationale: Models implemented in a system will experience common data challenges like illumination, motion blue, occlusion, changes in perspective, and weather impacts. These peturbations affect the data and can have significant impacts on the quality of the model prediction which must be addressed before deployment. ([Russell & Norivg](http://aima.cs.berkeley.edu))
+- Implementation: Dependent on the identified data challenges; see references section at the bottom of this page for more resources on dataset augmentation. The AutoAugment data augmentation policy proposed in ([Yin et. al 2019](https://proceedings.neurips.cc/paper/2019/file/b05b57f6add810d3b7490866d74c0053-Paper.pdf)) is a reccomended starting point. The ([CheckList](https://homes.cs.washington.edu/~wtshuang/static/papers/2020-acl-checklist.pdf)) paper is also a useful tool to identify necessary capabilites of the model to promote robustness.  
 
 **Robustness to Adversarial Attack**
 - Objective: Ensure that the model is robust to sythentic manipulation or targeted adversarial attacks ([Hendrycks et al.](https://arxiv.org/pdf/2109.13916.pdf)).
-- Metric: 
-- Rationale: 
-- Implementation: Dependent on the identified adversary MLCO and MDCOA; see references section at the bottom of this page for more resources on this type of robustness
+- Metric: There are performance metrics for adversarial robustness ([Buzhinsky et al. 2020](https://arxiv.org/pdf/2003.01993.pdf)) and existing benchmarked adversarial robustness tools such as ([CleverHans](https://github.com/cleverhans-lab/cleverhans), [FoolBox](https://github.com/bethgelab/foolbox), [ART](https://github.com/Trusted-AI/adversarial-robustness-toolbox)) that may be used. 
+- Rationale: A model deployed in a system may face different vulnerabilities (data pollution, physical infrastructure, etc.) and attacks (poisoning, extraction, inference, etc.) that can significantly degrade the performane, security, or safety of the model. 
+- Implementation: Dependent on the identified adversary most likely course of action (MLCOA) and most dangerous course of action (MDCOA); see references section at the bottom of this page for more resources on adversarial robustness. 
 
 ### Costs
 
@@ -256,3 +256,10 @@ Fairness
 Interpretability
 - [Towards A Rigorous Science of Interpretable Machine Learning](https://arxiv.org/pdf/1702.08608.pdf)
 - [Techniques for Intepretable Machine Learning](https://arxiv.org/pdf/1808.00033.pdf)
+
+Robustness
+- Identifying model capabilites and generated test cases based on these capabilites helps ensure a robust model [Behavioral Testing](https://homes.cs.washington.edu/~wtshuang/static/papers/2020-acl-checklist.pdf)
+- Practical examination of methods and metrics for robustness with case studies and scenarios [Robustness Testing of AI Systems](https://link.springer.com/chapter/10.1007/978-3-030-79150-6_21)
+- Specific to computer vision and dataset augmentation [Model Robustness in Computer Vision](https://proceedings.neurips.cc/paper/2019/file/b05b57f6add810d3b7490866d74c0053-Paper.pdf)
+- Performance measures for adversarial deep learning robustness [Metrics and Methods for Robustness Evaluation](https://arxiv.org/pdf/2003.01993.pdf)
+- Proposed novel robustness ROC metric [Perception Robustness Testing](https://www.journalfieldrobotics.org/Field_Robotics/Papers_files/10_Pezzementi.pdf)
