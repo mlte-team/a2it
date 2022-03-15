@@ -4,12 +4,13 @@ Determining model performance and ensuring that it could add value is a critical
 This section is dedicated to ensuring that a team building a machine learning model understands and can articulate their model requirements in order to prepare them for the next step of the process, which is system integration “[Machine Learning in Production: From Models to Systems](https://ckaestne.medium.com/machine-learning-in-production-from-models-to-systems-e1422ec7cd65)”).  
 ## Internal Model Testing (IMT) Procedure
 1. This testing procedure makes several assumption of the preparation required for a model to be tested, meaning that it expects your team to have conducted a machine learning process, including (but not limited to):
-    * Making a list of model requirements ranked in order of priority (if unsure how to rank your requirements, consider Case-Based Ranking from [Perini et al](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6249686)).
-    * Gathering representative data for the problem you're trying to solve.
+    * Making a preliminary list of model requirements ranked in order of priority (if unsure how to rank your requirements, consider Case-Based Ranking from [Perini et al](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6249686)).
+    * Ensuring that representative training and test data is available or provided for the problem you're trying to solve.
     * Splitting the data for training, validation, and testing.
     * Appropriately selecting a model and then fine-tuning it.  
     If you are unsure that your team and model are ready for internal model testing, reference a checklist such as Chapter 2 of [Hands-On Machine Learning](https://learning.oreilly.com/library/view/hands-on-machine-learning/9781492032632/) or a similar guide (like [Raschka 2018](https://arxiv.org/pdf/1811.12808.pdf)).  
-2. Determine one or more appropriate baseline tests for your model. Below are some suggestions; if no example works for your system, then justify the baseline that you select. Please note that this step is the most time and resource-intensive of the IMT procedure, but if done right will ensure your model is appropriately evaluated.  
+    TODO(Kate): Create an example checklist in another MD file with lots more resources linked for those who might need it.
+2. Determine one or more appropriate baseline tests for your model. Below are some suggestions; if no example works for your system, then justify the baseline that you select. **Please note that this step is the most time and resource-intensive of the IMT procedure, but if done right will ensure your model is appropriately evaluated.**  
     * Some datasets and methods already have an accepted baseline that can be used (for instance, [PASCAL VOC](http://host.robots.ox.ac.uk/pascal/VOC/pubs/everingham10.pdf) is an object category recognition and detection benchmark).
     * Classify everything as the majority (as described by Chapter 7.2 of [Hvitfeldt & Silge 2021](https://smltar.com/mlclassification.html#classnull)).
     * If this model implements a task that is currently performed manually, conduct a test in which humans perform the task and use their performance as the baseline.
@@ -21,9 +22,10 @@ This section is dedicated to ensuring that a team building a machine learning mo
         * Average Precision ([AP](https://scikit-learn.org/stable/auto_examples/model_selection/plot_precision_recall.html?highlight=precision%20recall)) is the weighted mean of precisions achieved at each recall threshold.
         * [mAP50](https://arxiv.org/abs/2112.02814): Used when detecting multiple classes. The precision accumulated over different levels of recall under the intersection over union (IOU) threshold of 0.50. 
         * [mAP](https://arxiv.org/abs/2112.02814): Extension of mAP50 that is averaged over ten IOU thresholds
-4. Import the functions for your selected metrics from [ml-te](https://github.com/turingcompl33t/mlte) (pronounced 'melt'). Using your test dataset, conduct a test measuring the model with the selected metric against the chosen baseline.
-5. If performance exceeds the baseline, stop here and go to “next steps”.
-6. If performance does not exceed the baseline, return to the machine learning process referenced in part i and iterate through potential changes to the model to improve performance.
+4. Import the functions for your selected metrics from [ml-te](https://github.com/turingcompl33t/mlte) (pronounced 'melt'). Using your test dataset, conduct a test measuring the model with the selected metric against the chosen baseline.  
+TODO(Kate, Jenny): Do we want to recommend that they use their validation set here? What if they need to iterate through this process multiple times?
+6. If performance exceeds the baseline, stop here and go to “next steps”.
+7. If performance does not exceed the baseline, return to the machine learning process referenced in part i and iterate through potential changes to the model to improve performance.
 ### Next Steps
 * Meet with the team or individual in charge of designing and implementing the computer vision system of which your model is a part. 
     * The results of your IMT along with your list of model inputs, outputs, and requirements should be discussed in the context of the system.
