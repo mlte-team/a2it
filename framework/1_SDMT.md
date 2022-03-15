@@ -1,13 +1,17 @@
 # System Dependent Model Testing
 ### Objective and Rationale
 Machine learning models and the systems into which they are integrated must be functional in their desired context, as well as robust to an array of potential circumstances.  
-This section lists properties that should be considered for model and system requirements and how those are prioritized, including weighing tradeoffs ([Ribeiro et al. 2020](https://homes.cs.washington.edu/~wtshuang/static/papers/2020-acl-checklist.pdf)). We recommend selecting the subset of these properties that are most relevant for your application. Ensure that you track the values of the metrics associated with these properties; we recommend existing experiment tracking services such as [MlFlow Tracking](https://mlflow.org/docs/latest/tracking.html) or [Weights and Biases Experiments](https://wandb.ai/site/experiment-tracking). 
+This section lists properties that should be considered for model and system requirements and how those are prioritized, including weighing tradeoffs ([Ribeiro et al. 2020](https://homes.cs.washington.edu/~wtshuang/static/papers/2020-acl-checklist.pdf)).  
+
+TODO(Kyle): Should we add your definition of property here?  
+
+Model and system teams should select the subset of these properties that are most relevant for your application. Ensure that you track the values of the metrics associated with these properties; we recommend existing experiment tracking services such as [MlFlow Tracking](https://mlflow.org/docs/latest/tracking.html) or [Weights and Biases Experiments](https://wandb.ai/site/experiment-tracking). 
 
 ## System Dependent Model Testing (SDMT) Properties
 
 **Structure**
 
-The properties are organized into four categoris: 
+The properties are organized into four categories: 
 - Functionality
 - Robustness
 - Costs
@@ -31,7 +35,7 @@ Each of the properties is organized as follows:
 - Objective: Data and models should be free of bias to avoid unfair treatment of certain groups, to ensure a fair distribution of benefits and costs, and to offer those affected an opportunity to seek redress against adverse decisions made by the system or the humans operating it ([Chouldechova & Roth 2018](https://arxiv.org/pdf/1810.08810.pdf)). 
 - Metric: Statistical metrics of fairness include raw positive classification rate ([Feldman et al. 2015](https://arxiv.org/pdf/1412.3756v3.pdf)), false positive and false negative rates, or positive predictive value ([Chouldechova 2017](https://arxiv.org/pdf/1703.00056.pdf)). However, every fairness metric includes tradeoffs, so if this is important to the system then the model and system teams must have a conversation about the overall effects and the appropriate tradeoffs to ensure fairness.
 - Rationale: Biased models result in a degraded user experience for certain sub-populations, and can damage user trust in a system.
-- Implementation: Dependent on the chosen metric or tradeoff; see references section at the bottom of this page for more resources on fairness.
+- Implementation: Start by identifying the protected attribute in your dataset, and then determine what fairness measure the model and system should prioritize. Depending on those two priorities and their respective tradeoffs, see references section at the bottom of this page for more resources on fairness.
 
 **Interpretability**
 - Objective: Some systems necessitate an ability to be explained or presented in understandable terms to a human ([Doshi-Velez & Kim 2017](https://arxiv.org/pdf/1702.08608.pdf)). 
@@ -48,10 +52,18 @@ Each of the properties is organized as follows:
 - Implementation: Dependent on the identified data challenges; see references section at the bottom of this page for more resources on dataset augmentation. The AutoAugment data augmentation policy proposed in ([Yin et. al 2019](https://proceedings.neurips.cc/paper/2019/file/b05b57f6add810d3b7490866d74c0053-Paper.pdf)) is a reccomended starting point. The ([CheckList](https://homes.cs.washington.edu/~wtshuang/static/papers/2020-acl-checklist.pdf)) paper is also a useful tool to identify necessary capabilites of the model to promote robustness.  
 
 **Robustness to Adversarial Attack**
-- Objective: Ensure that the model is robust to sythentic manipulation or targeted adversarial attacks ([Hendrycks et al.](https://arxiv.org/pdf/2109.13916.pdf)).
+- Objective: Ensure that the model is robust to sythentic manipulation or targeted adversarial attacks ([Hendrycks et al.](https://arxiv.org/pdf/2109.13916.pdf) and [McGraw et al. 2020](https://berryvilleiml.com/docs/ara.pdf)).
 - Metric: There are performance metrics for adversarial robustness ([Buzhinsky et al. 2020](https://arxiv.org/pdf/2003.01993.pdf)) and existing benchmarked adversarial robustness tools such as ([CleverHans](https://github.com/cleverhans-lab/cleverhans), [FoolBox](https://github.com/bethgelab/foolbox), [ART](https://github.com/Trusted-AI/adversarial-robustness-toolbox)) that may be used. 
 - Rationale: A model deployed in a system may face different vulnerabilities (data pollution, physical infrastructure, etc.) and attacks (poisoning, extraction, inference, etc.) that can significantly degrade the performane, security, or safety of the model. 
 - Implementation: Dependent on the identified adversary most likely course of action (MLCOA) and most dangerous course of action (MDCOA); see references section at the bottom of this page for more resources on adversarial robustness. 
+
+**Resilience**
+- Objective: Ensure that the model is insulated to compromise from internal error.
+- Metric: The metric by which resilience is measured will depend on what risks are most likely for your given model. Areas of focus could include adversarial attacks (as described above), reproducability, overfitting, and output integrity among others. See [McGraw et al. 2020](https://berryvilleiml.com/docs/ara.pdf) for a comprehensive list of risks and recommended methods of addressing them.
+- Rationale: A model and the system in which it is encased have numerous risk areas that can be traced back to intrinsic design flaws [McGraw et al. 2020](https://berryvilleiml.com/docs/ara.pdf).
+- Implementation: Prioritize risks based on your model and system, and address them in order of probability that they occur.  
+
+TODO(Jenny, Kyle): Review this - is resilience the right term here or should this be security, or some other term? Also, should it be categorized under robustness or be moved to another category?  
 
 ### Costs
 
@@ -231,6 +243,9 @@ TODO:
 - Model size as a function of data size
 - Training time as a function of data size
 - Training cost (CPU, memory) as a function of data size
+
+### Next Steps
+TODO(All): Determine how we direct teams to proceed after this.  
 
 ### References
 
