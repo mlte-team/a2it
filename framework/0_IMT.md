@@ -5,7 +5,7 @@ This section is dedicated to ensuring that a team building a machine learning mo
 ## Internal Model Testing (IMT) Procedure
 1. This testing procedure makes several assumption of the preparation required for a model to be tested, meaning that it expects your team to have conducted a machine learning process, including (but not limited to):
     * Making a preliminary list of model requirements ranked in order of priority (if unsure how to rank your requirements, consider Case-Based Ranking from [Perini et al](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6249686)).
-    * Ensuring that representative training and test data is available or provided for the problem you're trying to solve.
+    * Ensuring that representative training and test data is available or provided for the problem you're trying to solve, and handling the data appropriately based on any associated permissions or authorities that are required.
     * Splitting the data for training, validation, and testing.
     * Appropriately selecting a model and then fine-tuning it.  
     If you are unsure that your team and model are ready for internal model testing, reference a checklist such as Chapter 2 of [Hands-On Machine Learning](https://learning.oreilly.com/library/view/hands-on-machine-learning/9781492032632/) or a similar guide (like [Raschka 2018](https://arxiv.org/pdf/1811.12808.pdf)).  
@@ -22,8 +22,7 @@ This section is dedicated to ensuring that a team building a machine learning mo
         * Average Precision ([AP](https://scikit-learn.org/stable/auto_examples/model_selection/plot_precision_recall.html?highlight=precision%20recall)) is the weighted mean of precisions achieved at each recall threshold.
         * [mAP50](https://arxiv.org/abs/2112.02814): Used when detecting multiple classes. The precision accumulated over different levels of recall under the intersection over union (IOU) threshold of 0.50. 
         * [mAP](https://arxiv.org/abs/2112.02814): Extension of mAP50 that is averaged over ten IOU thresholds
-4. Import the functions for your selected metrics from [ml-te](https://github.com/turingcompl33t/mlte) (pronounced 'melt'). Using your test dataset, conduct a test measuring the model with the selected metric against the chosen baseline.  
-TODO(Kate, Jenny): Do we want to recommend that they use their validation set here? What if they need to iterate through this process multiple times?
+4. Import the functions for your selected metrics from [ml-te](https://github.com/turingcompl33t/mlte) (pronounced 'melt'). Using your test dataset, conduct a test measuring the model with the selected metric against the chosen baseline. If it is possible for multiple test sets to be generated, using different ones for each evaluation in this module and for [SDMT](1_SDMT.md) will produce the best results. However, that is often not possible for practitioners, and there is data to support that substantial overfitting does not occur even if a single test set is used multiple times [Roelofs et al. 2019](https://proceedings.neurips.cc/paper/2019/file/ee39e503b6bedf0c98c388b7e8589aca-Paper.pdf).
 6. If performance exceeds the baseline, stop here and go to “next steps”.
 7. If performance does not exceed the baseline, return to the machine learning process referenced in part i and iterate through potential changes to the model to improve performance.
 ### Next Steps
