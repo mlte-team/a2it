@@ -13,7 +13,6 @@ This section contains information on fairness and interpretability consideration
 This section contains robustness considerations for the model and the system.  
   
 **Navigation Links:**  
-[Appendix Index](appendix_index.md)  
-[Internal Model Testing (IMT)](0_IMT.md)  
-[System Dependent Model Testing (SDMT)](1_SDMT.md)  
+[Internal Model Testing (IMT)](https://github.com/turingcompl33t/a2it/blob/master/framework/0_IMT.md)  
+[System Dependent Model Testing (SDMT)](https://github.com/turingcompl33t/a2it/blob/master/framework/1_SDMT.md)  
 [Army Artificial Intelligence Testing (A2IT)](https://github.com/turingcompl33t/a2it)  
