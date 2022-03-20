@@ -13,7 +13,7 @@ This section is dedicated to ensuring that a team building a machine learning mo
     * Some datasets and methods already have an accepted baseline that can be used (for instance, [PASCAL VOC](http://host.robots.ox.ac.uk/pascal/VOC/pubs/everingham10.pdf) is an object category recognition and detection benchmark).
     * Classify everything as the majority (as described by Chapter 7.2 of [Hvitfeldt & Silge 2021](https://smltar.com/mlclassification.html#classnull)).
     * If this model implements a task that is currently performed manually, conduct a test in which humans perform the task and use their performance as the baseline.
-3. While selecting a baseline, a performance metric must also be stipulated. The choice of metric depends on the exact nature of the computer vision system being created; following are some examples to consider.  
+3. While selecting a baseline, a performance metric must also be stipulated. The choice of metric depends on the exact nature of the system being created; following are some examples to consider.  
     * Classification:
         * Receiver Operating Characteristics ([ROC](https://scikit-learn.org/stable/auto_examples/model_selection/plot_roc.html?highlight=roc)) curves and the Area Under the Curve ([AUC](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_auc_score.html#sklearn.metrics.roc_auc_score)): Evaluation metrics for standard classification tasks. 
         * Precision Recall Curves and Area Under the Precision Recall Curve ([AUPRC](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.PrecisionRecallDisplay.html#sklearn.metrics.PrecisionRecallDisplay)): Used when there are class imbalances.
@@ -25,7 +25,7 @@ This section is dedicated to ensuring that a team building a machine learning mo
 6. If performance exceeds the baseline, stop here and go to “next steps”.
 7. If performance does not exceed the baseline, return to the machine learning process referenced in part i and iterate through potential changes to the model to improve performance.
 ### Next Steps
-* Meet with the team or individual in charge of designing and implementing the computer vision system of which your model is a part. 
+* Meet with the team or individual in charge of designing and implementing the system of which your model is a part. 
     * The results of your IMT along with your list of model inputs, outputs, and requirements should be discussed in the context of the system.
     * Determine if changes need to be made to the model or the system. 
     * Do not continue to [System Dependent Model Testing](1_SDMT.md) (SDMT) until your team and the system team have agreed that the model and system are synchronized and requirements are satisfied at both the model and the system levels.
