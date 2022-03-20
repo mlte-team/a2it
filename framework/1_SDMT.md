@@ -3,7 +3,7 @@
 Machine learning models and the systems into which they are integrated must be functional in their desired context, as well as robust to an array of potential circumstances.  
 This section lists properties that should be considered for model and system requirements and how those are prioritized, including weighing tradeoffs ([Ribeiro et al. 2020](https://homes.cs.washington.edu/~wtshuang/static/papers/2020-acl-checklist.pdf)).  
 
-TODO(Kyle): Should we add your definition of property here?  
+TODO(Kyle): Add your definition of property here   
 
 Model and system teams should select the subset of these properties that are most relevant for your application. Ensure that you track the values of the metrics associated with these properties; we recommend existing experiment tracking services such as [MlFlow Tracking](https://mlflow.org/docs/latest/tracking.html) or [Weights and Biases Experiments](https://wandb.ai/site/experiment-tracking). 
 
@@ -35,13 +35,13 @@ Each of the properties is organized as follows:
 - Objective: Data and models should be free of bias to avoid unfair treatment of certain groups, to ensure a fair distribution of benefits and costs, and to offer those affected an opportunity to seek redress against adverse decisions made by the system or the humans operating it ([Chouldechova & Roth 2018](https://arxiv.org/pdf/1810.08810.pdf)). 
 - Metric: Statistical metrics of fairness include raw positive classification rate ([Feldman et al. 2015](https://arxiv.org/pdf/1412.3756v3.pdf)), false positive and false negative rates, or positive predictive value ([Chouldechova 2017](https://arxiv.org/pdf/1703.00056.pdf)). However, every fairness metric includes tradeoffs, so if this is important to the system then the model and system teams must have a conversation about the overall effects and the appropriate tradeoffs to ensure fairness.
 - Rationale: Biased models result in a degraded user experience for certain sub-populations, and can damage user trust in a system.
-- Implementation: Start by identifying the protected attribute in your dataset, and then determine what fairness measure the model and system should prioritize. Depending on those two priorities and their respective tradeoffs, see references section at the bottom of this page for more resources on fairness.
+- Implementation: Start by identifying the protected attribute in your dataset, and then determine what fairness measure the model and system should prioritize. Depending on those two priorities and their respective tradeoffs, see [section 3](appendix/appendix_section_3.md) of the [appendix](appendix/appendix_index.md) for more resources on fairness.
 
 **Interpretability**
 - Objective: Some systems necessitate an ability to be explained or presented in understandable terms to a human ([Doshi-Velez & Kim 2017](https://arxiv.org/pdf/1702.08608.pdf)). 
 - Metric: Interpretability is difficult to measure; it can be considered from an end-user perspective or from a developer perspective by observing and evaluating the interactions of these teams with the system, or having a domain expert explain model outputs in context ([Doshi-Velez & Kim 2017](https://arxiv.org/pdf/1702.08608.pdf)).
 - Rationale: Depending on the system purpose, it may be critical for the system to be explanable and understandable.
-- Implementation: Options include, among others: intrinsic interpretability in which a model is self explanatory, and post-hoc interpretability where another model is created to explain outputs from the first ([Du et al. 2019](https://arxiv.org/pdf/1808.00033.pdf)).
+- Implementation: Options include, among others: intrinsic interpretability in which a model is self explanatory, and post-hoc interpretability where another model is created to explain outputs from the first ([Du et al. 2019](https://arxiv.org/pdf/1808.00033.pdf)). For more resources on interpretability, see [section 3](appendix/appendix_section_3.md) of the [appendix](appendix/appendix_index.md).
 
 ### Robustness
 
@@ -49,13 +49,13 @@ Each of the properties is organized as follows:
 - Objective: Ensure that the model is robust to naturally occuring data challenges that it will encounter in the ambient conditions of the system ([Berghoff et al. 2021](https://link.springer.com/chapter/10.1007/978-3-030-79150-6_21)).
 - Metric: Depending on the identified data challenges and the task specific properties, model robustness can be measured by a robustness score across the peturbation parameter space. This is a metric that calculates the fraction of correctly identified robust samples in the dataset. Reassessing the model accuracy with augmented datasets is also a common metric for robustness ([Berghoff et al. 2021](https://link.springer.com/chapter/10.1007/978-3-030-79150-6_21)).
 - Rationale: Models implemented in a system will experience common data challenges like illumination, motion blue, occlusion, changes in perspective, and weather impacts. These peturbations affect the data and can have significant impacts on the quality of the model prediction which must be addressed before deployment ([Russell & Norivg](http://aima.cs.berkeley.edu)). For more metrics and information on general robustness, see [this](https://thirdeyedata.io/robustness-measurement-of-machine-learning-models-with-examples-in-python/) blog post.
-- Implementation: Dependent on the identified data challenges; see references section at the bottom of this page for more resources on dataset augmentation. The AutoAugment data augmentation policy proposed in ([Yin et. al 2019](https://proceedings.neurips.cc/paper/2019/file/b05b57f6add810d3b7490866d74c0053-Paper.pdf)) is a reccomended starting point. The ([CheckList](https://homes.cs.washington.edu/~wtshuang/static/papers/2020-acl-checklist.pdf)) paper is also a useful tool to identify necessary capabilites of the model to promote robustness.  
+- Implementation: Dependent on the identified data challenges; see references section at the bottom of this page for more resources on dataset augmentation. The AutoAugment data augmentation policy proposed in ([Yin et. al 2019](https://proceedings.neurips.cc/paper/2019/file/b05b57f6add810d3b7490866d74c0053-Paper.pdf)) is a reccomended starting point. The ([CheckList](https://homes.cs.washington.edu/~wtshuang/static/papers/2020-acl-checklist.pdf)) paper is also a useful tool to identify necessary capabilites of the model to promote robustness. For more resources on robustness, see [section 4](appendix/appendix_section_4.md) of the [appendix](appendix/appendix_index.md).  
 
 **Robustness to Adversarial Attack**
 - Objective: Ensure that the model is robust to sythentic manipulation or targeted adversarial attacks ([Hendrycks et al.](https://arxiv.org/pdf/2109.13916.pdf) and [McGraw et al. 2020](https://berryvilleiml.com/docs/ara.pdf)).
 - Metric: There are performance metrics for adversarial robustness ([Buzhinsky et al. 2020](https://arxiv.org/pdf/2003.01993.pdf)) and existing benchmarked adversarial robustness tools such as ([CleverHans](https://github.com/cleverhans-lab/cleverhans), [FoolBox](https://github.com/bethgelab/foolbox), [ART](https://github.com/Trusted-AI/adversarial-robustness-toolbox)) that may be used. 
 - Rationale: A model deployed in a system may face different vulnerabilities (data pollution, physical infrastructure, etc.) and attacks (poisoning, extraction, inference, etc.) that can significantly degrade the performane, security, or safety of the model. 
-- Implementation: Dependent on the identified adversary most likely course of action (MLCOA) and most dangerous course of action (MDCOA); see references section at the bottom of this page for more resources on adversarial robustness. 
+- Implementation: Dependent on the identified adversary most likely course of action (MLCOA) and most dangerous course of action (MDCOA); see [section 4](appendix/appendix_section_4.md) of the [appendix](appendix/appendix_index.md) for more resources on adversarial robustness. 
 
 **Security**
 - Objective: Ensure that the model is insulated to compromise from internal error.
