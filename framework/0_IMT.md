@@ -9,7 +9,6 @@ This section is dedicated to ensuring that a team building a machine learning mo
     * Splitting the data for training, validation, and testing.
     * Appropriately selecting a model and then fine-tuning it.  
     If you are unsure that your team and model are ready for internal model testing, reference a checklist such as Chapter 2 of [Hands-On Machine Learning](https://learning.oreilly.com/library/view/hands-on-machine-learning/9781492032632/) or a similar guide (like [Raschka 2018](https://arxiv.org/pdf/1811.12808.pdf)); you can also see [section 1](appendix/appendix_section_1.md) of the [appendix](appendix/appendix_index.md) for more information.  
-    TODO(Kate): Create an example checklist in another MD file with lots more resources linked for those who might need it.
 2. Determine one or more appropriate baseline tests for your model. Below are some suggestions; if no example works for your system, then justify the baseline that you select. **Please note that this step is the most time and resource-intensive of the IMT procedure, but if done right will ensure your model is appropriately evaluated.**  
     * Some datasets and methods already have an accepted baseline that can be used (for instance, [PASCAL VOC](http://host.robots.ox.ac.uk/pascal/VOC/pubs/everingham10.pdf) is an object category recognition and detection benchmark).
     * Classify everything as the majority (as described by Chapter 7.2 of [Hvitfeldt & Silge 2021](https://smltar.com/mlclassification.html#classnull)).
