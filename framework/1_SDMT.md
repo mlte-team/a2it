@@ -57,13 +57,11 @@ Each of the properties is organized as follows:
 - Rationale: A model deployed in a system may face different vulnerabilities (data pollution, physical infrastructure, etc.) and attacks (poisoning, extraction, inference, etc.) that can significantly degrade the performane, security, or safety of the model. 
 - Implementation: Dependent on the identified adversary most likely course of action (MLCOA) and most dangerous course of action (MDCOA); see references section at the bottom of this page for more resources on adversarial robustness. 
 
-**Resilience**
+**Security**
 - Objective: Ensure that the model is insulated to compromise from internal error.
-- Metric: The metric by which resilience is measured will depend on what risks are most likely for your given model. Areas of focus could include adversarial attacks (as described above), reproducability, overfitting, and output integrity among others. See [McGraw et al. 2020](https://berryvilleiml.com/docs/ara.pdf) for a comprehensive list of risks and recommended methods of addressing them.
+- Metric: The metric by which security is measured will depend on what risks are most likely for your given model. Areas of focus could include adversarial attacks (as described above), reproducability, overfitting, and output integrity among others. See [McGraw et al. 2020](https://berryvilleiml.com/docs/ara.pdf) for a comprehensive list of risks and recommended methods of addressing them.
 - Rationale: A model and the system in which it is encased have numerous risk areas that can be traced back to intrinsic design flaws [McGraw et al. 2020](https://berryvilleiml.com/docs/ara.pdf).
 - Implementation: Prioritize risks based on your model and system, and address them in order of probability that they occur.  
-
-TODO(Jenny, Kyle): Review this - is resilience the right term here or should this be security, or some other term? Also, should it be categorized under robustness or be moved to another category?  
 
 ### Costs
 
@@ -245,36 +243,9 @@ TODO:
 - Training cost (CPU, memory) as a function of data size
 
 ### Next Steps
-TODO(All): Determine how we direct teams to proceed after this.  
+* Meet with the system team and discuss each property result.
+    * The results of each portion of SDMT along with your list of model inputs, outputs, and requirements should be discussed in the context of the system.
+    * Determine if changes need to be made to the model or the system. 
+    * Do not continue to model production and system integration until your team and the system team have agreed that the model and system are synchronized and requirements are satisfied at both the model and the system levels.
 
-### References
-
-Requirement Selection
-- [Requirements Engineering for Machine Learning](https://arxiv.org/pdf/1908.04674.pdf)
-- [Towards Guidelines for Assessing Qualities of Machine Learning Systems](https://arxiv.org/ftp/arxiv/papers/2008/2008.11007.pdf)
-
-Model Property Definition
-- [Model Quality: Defining Correctness and Fit](https://ckaestne.medium.com/model-quality-defining-correctness-and-fit-a8361b857df)
-- [Model Quality: Measuring Prediction Accuracy](https://ckaestne.medium.com/model-quality-measuring-prediction-accuracy-38826216ebcb)
-- [Model Quality: Slicing, Capabilities, Invariant, and Other Testing Strategies](https://ckaestne.medium.com/model-quality-slicing-capabilities-invariants-and-other-testing-strategies-27e456027bd)
-- [Quality Attributes of ML Components](https://ckaestne.medium.com/quality-drivers-in-architectures-for-ml-enabled-systems-836f21c44334)
-- [The Tail at Scale](https://research.google/pubs/pub40801/)
-- [Estimation of Energy Consumption in Machine Learning](https://www.sciencedirect.com/science/article/pii/S0743731518308773)
-
-Fairness  
-- Metrics of statistical fairness: [Certifying and Removing Disparate Impact](https://arxiv.org/pdf/1412.3756v3.pdf) and [Fair Prediction with Disparate Impact](https://arxiv.org/pdf/1703.00056.pdf)
-- Tradeoffs of individual versus statistical fairness: [The Frontiers of Fairness in Machine Learning](https://arxiv.org/pdf/1810.08810.pdf) 
-- Testing/measuring individual fairness: [On Formalizing Fairness in Prediction with Machine Learning](https://arxiv.org/pdf/1710.03184.pdf)
-- How to consider the dynamic effects of decisions on a system: [Downstream Effects of Affirmative Action](https://arxiv.org/pdf/1808.09004.pdf) and [Delayed Impact of Fair Machine Learning](http://proceedings.mlr.press/v80/liu18c/liu18c.pdf)
-- If you are familiar with the bias or skew of the data, an option is to use rank-preserving procedures for repairing features to reduce or remove pairwise dependence with the protected attribute: [Certifying and Removing Disparate Impact](https://arxiv.org/pdf/1412.3756v3.pdf)
-
-Interpretability
-- [Towards A Rigorous Science of Interpretable Machine Learning](https://arxiv.org/pdf/1702.08608.pdf)
-- [Techniques for Intepretable Machine Learning](https://arxiv.org/pdf/1808.00033.pdf)
-
-Robustness
-- Identifying model capabilites and generated test cases based on these capabilites helps ensure a robust model [Behavioral Testing](https://homes.cs.washington.edu/~wtshuang/static/papers/2020-acl-checklist.pdf)
-- Practical examination of methods and metrics for robustness with case studies and scenarios [Robustness Testing of AI Systems](https://link.springer.com/chapter/10.1007/978-3-030-79150-6_21)
-- Specific to computer vision and dataset augmentation [Model Robustness in Computer Vision](https://proceedings.neurips.cc/paper/2019/file/b05b57f6add810d3b7490866d74c0053-Paper.pdf)
-- Performance measures for adversarial deep learning robustness [Metrics and Methods for Robustness Evaluation](https://arxiv.org/pdf/2003.01993.pdf)
-- Proposed novel robustness ROC metric [Perception Robustness Testing](https://www.journalfieldrobotics.org/Field_Robotics/Papers_files/10_Pezzementi.pdf)
+#### References and additional materials can be found in the [Appendix](appendix/appendix_index).
