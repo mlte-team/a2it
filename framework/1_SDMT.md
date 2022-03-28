@@ -43,6 +43,13 @@ Each of the properties is organized as follows:
 - Rationale: Depending on the system purpose, it may be critical for the system to be explanable and understandable.
 - Implementation: Options include, among others: intrinsic interpretability in which a model is self explanatory, and post-hoc interpretability where another model is created to explain outputs from the first ([Du et al. 2019](https://arxiv.org/pdf/1808.00033.pdf)). For more resources on interpretability, see [section 3](appendix/appendix_section_3.md) of the [appendix](appendix/appendix_index.md).
 
+**Stability**  
+TODO(All): Write/develop this property
+- Objective: Ensure that the system continues to address the problem in the future even if there is "concept drift".
+- Metric:
+- Rationale: 
+- Implementation: 
+
 ### Robustness
 
 **Robustness to Naturally Occuring Data Challenges**
@@ -56,6 +63,13 @@ Each of the properties is organized as follows:
 - Metric: There are performance metrics for adversarial robustness ([Buzhinsky et al. 2020](https://arxiv.org/pdf/2003.01993.pdf)) and existing benchmarked adversarial robustness tools such as ([CleverHans](https://github.com/cleverhans-lab/cleverhans), [FoolBox](https://github.com/bethgelab/foolbox), [ART](https://github.com/Trusted-AI/adversarial-robustness-toolbox)) that may be used. 
 - Rationale: A model deployed in a system may face different vulnerabilities (data pollution, physical infrastructure, etc.) and attacks (poisoning, extraction, inference, etc.) that can significantly degrade the performane, security, or safety of the model. 
 - Implementation: Dependent on the identified adversary most likely course of action (MLCOA) and most dangerous course of action (MDCOA); see [section 4](appendix/appendix_section_4.md) of the [appendix](appendix/appendix_index.md) for more resources on adversarial robustness. 
+
+**Robustness to Device-Generated Perturbations**  
+TODO(All): write out this parameter
+- Objective: Ensure that the model and the system are robust to perturbations resulting from devices that are part of the system. An example of a device-generated perturbation would be a camera taking unfocused video or pictures, making it impossible for the computer vision model to detect objects.
+- Metric:  
+- Rationale: 
+- Implementation: 
 
 **Security**
 - Objective: Ensure that the model is insulated to compromise from internal error.
@@ -242,10 +256,25 @@ TODO:
 - Training time as a function of data size
 - Training cost (CPU, memory) as a function of data size
 
+**Resilience to Failure**  
+TODO(All): Write/develop this property
+- Objective: Ensure that the system automates reaction to failure so that it is handled in a safe manner.
+- Metric:
+- Rationale: 
+- Implementation: 
+
+**Adaptability**  
+TODO(All): Write/develop this property
+- Objective: When scaling a system, making components that are mulit-use or adaptable goes a long way towards ensuring that a system is resilient and raising the possibility of reallocating a system if the need is alleviated in the future. An example of this would be an automated targeting system that works on both an Infantry Fighting Vehicle and a tank.
+- Metric:
+- Rationale: 
+- Implementation: 
+
 ### Next Steps
 * Meet with the system team and discuss each property result.
     * The results of each portion of SDMT along with your list of model inputs, outputs, and requirements should be discussed in the context of the system.
-    * Determine if changes need to be made to the model or the system. 
+    * Determine if changes need to be made to the model or the system.
+    * Consider the tradeoffs inherent in your requirements, and consider that you might need to get feedback from customers and iterate through these properties with their requirements in mind. 
     * Do not continue to model production and system integration until your team and the system team have agreed that the model and system are synchronized and requirements are satisfied at both the model and the system levels.
 
 #### References and additional materials can be found in the [Appendix](appendix/appendix_index.md).
