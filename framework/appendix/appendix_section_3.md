@@ -7,6 +7,7 @@
 - Testing/measuring individual fairness: [On Formalizing Fairness in Prediction with Machine Learning](https://arxiv.org/pdf/1710.03184.pdf)
 - How to consider the dynamic effects of decisions on a system: [Downstream Effects of Affirmative Action](https://arxiv.org/pdf/1808.09004.pdf) and [Delayed Impact of Fair Machine Learning](http://proceedings.mlr.press/v80/liu18c/liu18c.pdf)
 - If you are familiar with the bias or skew of the data, an option is to use rank-preserving procedures for repairing features to reduce or remove pairwise dependence with the protected attribute: [Certifying and Removing Disparate Impact](https://arxiv.org/pdf/1412.3756v3.pdf)
+- A general discussion of bias and fairness in machine learning: [Ch 8 Bias and Fairness](http://ciml.info/dl/v0_99/ciml-v0_99-ch08.pdf) from [A Course in Machine Learning](http://ciml.info)
 
 #### Questions:
 * Are subsets or groups within your dataset equally likely to be classified or predicted?
