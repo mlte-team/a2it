@@ -1,5 +1,5 @@
 # A2IT Appendix
-# Section 1: Machine Learning Checklist
+# IMT Section 1: Machine Learning Checklist
 
 This section displays examples of approaches to a machine learning pipeline, as well as links to further resources that may be helpful as you train and tweak your model.
 
