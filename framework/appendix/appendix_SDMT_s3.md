@@ -1,5 +1,5 @@
 # A2IT Appendix
-# Section 4: Robustness
+# SDMT Section 3: Robustness
 
 ## Robustness to naturally occuring data challenges
 Robustness to naturally occuring data challenges that the model encounters in the ambient conditions of the system ([Berghoff et al. 2021](https://link.springer.com/chapter/10.1007/978-3-030-79150-6_21)).  
