@@ -1,5 +1,5 @@
 # A2IT Appendix
-# Section 2: Model Properties and Requirements
+# SDMT Section 1: Model Properties and Requirements
 
 ### Requirement Selection
 - [Requirements Engineering for Machine Learning](https://arxiv.org/pdf/1908.04674.pdf)
