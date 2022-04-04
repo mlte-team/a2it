@@ -56,12 +56,12 @@ Robustness to adversarial attack: If applicable, determine an adversary’s most
 * If it would be beneficial to detect adversarial anomalies or assign low confidence values to potential adversarial inputs, this is another section to tie into the system framework. 
   
   
-#### References
-- Identifying model capabilites and generated test cases based on these capabilites helps ensure a robust model [Behavioral Testing](https://homes.cs.washington.edu/~wtshuang/static/papers/2020-acl-checklist.pdf)
-- Practical examination of methods and metrics for robustness with case studies and scenarios [Robustness Testing of AI Systems](https://link.springer.com/chapter/10.1007/978-3-030-79150-6_21)
-- Specific to computer vision and dataset augmentation [Model Robustness in Computer Vision](https://proceedings.neurips.cc/paper/2019/file/b05b57f6add810d3b7490866d74c0053-Paper.pdf)
-- Performance measures for adversarial deep learning robustness [Metrics and Methods for Robustness Evaluation](https://arxiv.org/pdf/2003.01993.pdf)
-- Proposed novel robustness ROC metric [Perception Robustness Testing](https://www.journalfieldrobotics.org/Field_Robotics/Papers_files/10_Pezzementi.pdf)
+#### Robustness References
+- Identifying model capabilites and generated test cases based on these capabilites helps ensure a robust model: [Behavioral Testing](https://homes.cs.washington.edu/~wtshuang/static/papers/2020-acl-checklist.pdf)
+- Practical examination of methods and metrics for robustness with case studies and scenarios: [Robustness Testing of AI Systems](https://link.springer.com/chapter/10.1007/978-3-030-79150-6_21)
+- Specific to computer vision and dataset augmentation: [Model Robustness in Computer Vision](https://proceedings.neurips.cc/paper/2019/file/b05b57f6add810d3b7490866d74c0053-Paper.pdf)
+- Performance measures for adversarial deep learning robustness: [Metrics and Methods for Robustness Evaluation](https://arxiv.org/pdf/2003.01993.pdf)
+- Proposed novel robustness ROC metric: [Perception Robustness Testing](https://www.journalfieldrobotics.org/Field_Robotics/Papers_files/10_Pezzementi.pdf)
   
   
 **Navigation Links:**  
