@@ -1,5 +1,5 @@
 # A2IT Appendix
-# Section 3: Fairness & Interpretability
+# SDMT Section 2: Fairness & Interpretability
 
 ## Fairness  
 - Metrics of statistical fairness: [Certifying and Removing Disparate Impact](https://arxiv.org/pdf/1412.3756v3.pdf) and [Fair Prediction with Disparate Impact](https://arxiv.org/pdf/1703.00056.pdf)
