@@ -153,15 +153,11 @@ stats = memory_consumption(pid)
 print(stats)
 ```
 
-TODO(Kyle): Write a more accurate wrapper with a simple heap profiler.
-
 **Training Energy Consumption**
 - Objective: Measure the energy consumption of the model training process.
 - Metric: The energy consumed by the training process in joules (total power consumption over a time interval).
 - Rationale: For large-scale machine learning applications, energy consumption may be a major driver in the total cost of development and maintenance. The model training process is frequently the most energy-intensive stage of the machine learning pipeline.
 - Implementation: Energy consumption and power requirements are a relatively-new consideration in the field of machine learning. Accordingly, methods for convenient and accurate measurement are limited.
-
-TODO(Kyle): Baseline energy measurements with PMC.
 
 **Inference Latency (Mean)**
 - Objective: Measure the mean inference latency of a trained model.
@@ -223,23 +219,17 @@ print(f"Throughput: {t_put} requests per second")
 - Rationale: The computational requirements of model inference determine the load that it places on the system when performing inference. This is a key determinant in the compute resources required for model deployment. For example, a model for which inference is computationally inexpensive may be deployed to an instance with relatively light computational resources. This might allow for investment in other resources, such as memory capacity, for the instance to which the model is deployed.
 - Implementation: Measure the CPU utilization of the inference service. The setup for inference measurement may be more involved than training measurement because inference is often not run as a standalone process. 
 
-TODO(Kyle): How to measure CPU utilization in inference-relevant environment?
-
 **Inference Memory Consumption**
 - Objective: Measure the peak and average memory consumption during model inference.
 - Metric: The volume of memory consumed in bytes or some multiple thereof (kilobytes, megabytes, etc.). This metric is absolute. 
 - Rationale: The memory requirements of model inference determine the load that is places on the system during inference. This is a key determinant in the memory resources required for model deployment. For example, a model for which inference is not memory-intensive may be deployed to an instance with relatively light memory resources. This might allow for investment in other resources, such as core count, for the instance to which the model is deployed. 
 - Implementation: Measure the memory consumption of the process during the inference procedure.
 
-TODO(Kyle): How to measure memory consumption in inference-relevant environment?
-
 **Inference Energy Consumption**
 - Objective: Measure the energy consumption of the model inference process.
 - Metric: The energy consumed by the inference process in joules (total power consumption over a time interval).
 - Rationale: For large-scale machine learning applications, energy consumption may be a major driver in the total cost of development and maintenance.
 - Implementation: Energy consumption and power requirements are a relatively-new consideration in the field of machine learning. Accordingly, methods for convenient and accurate measurement are limited.
-
-TODO(Kyle): Baseline energy measurements with PMC.
 
 ### Scalability
 - Model size as a function of data size
