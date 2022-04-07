@@ -18,14 +18,13 @@
 #### Considerations and Methods:
 * Consider using metrics of statistical fairness (a small number of protected demographic groups should have parity of some statistical measure across all groups) such as raw positive classification rate ([Feldman et al. 2015](https://arxiv.org/pdf/1412.3756v3.pdf)), false positive and false negative rates, or positive predictive value (last two from [Chouldechova 2017](https://arxiv.org/pdf/1703.00056.pdf)).
 *   Note that there are tradeoffs to individual versus statistical fairness, see [Chouldechova & Roth 2018](https://arxiv.org/pdf/1810.08810.pdf).
-* If there is a reliable and non-discriminating distance metric, see [Gajane & Pechenizkiy's](https://arxiv.org/pdf/1710.03184.pdf) defintion 4 for a test by which individual fairness can be measured.
+* If there is a reliable and non-discriminating distance metric, see [Gajane & Pechenizkiy's](https://arxiv.org/pdf/1710.03184.pdf) definition 4 for a test by which individual fairness can be measured.
 * [Kannan et al.](https://arxiv.org/pdf/1808.09004.pdf) and [Liu et al.](http://proceedings.mlr.press/v80/liu18c/liu18c.pdf) demonstrate how to consider the dynamic effects of decisions on a system; using the context of your system, identify ways in which downstream effects might modify the social fabric and determine if those parts of the model or the system need to be modified accordingly.
 * Depending upon your knowledge of bias or skew in the data, consider using rank-preserving procedures for repairing features to reduce or remove pairwise dependence with the protected attribute from [Feldman et al. 2015](https://arxiv.org/pdf/1412.3756v3.pdf).
-* TODO(Kate): parse [this](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.1270.pdf) NIST publication about bias in AI.
 
 ## Interpretability
 - [Towards A Rigorous Science of Interpretable Machine Learning](https://arxiv.org/pdf/1702.08608.pdf)
-- [Techniques for Intepretable Machine Learning](https://arxiv.org/pdf/1808.00033.pdf)
+- [Techniques for Interpretable Machine Learning](https://arxiv.org/pdf/1808.00033.pdf)
 
 #### Questions:
 * Is it important that the model is explainable to the user? Some machine learning systems do not require explainability because “(1) there are no significant consequences for unacceptable results or (2) the problem is sufficiently well-studied and validated in real applications that we trust the system’s decision, even if the system is not perfect” ([Doshi-Velez & Kim 2017](https://arxiv.org/pdf/1702.08608.pdf)).
@@ -33,7 +32,7 @@
 
 #### Considerations and Methods:
 * If interpretability is important, consider using intrinsic interpretability (in which the model is self-explanatory) or post-hoc interpretability (create another model to explain outputs from the first) from [Du et al. 2019](https://arxiv.org/pdf/1808.00033.pdf).
-Use a domain expert to explain model outputs in their proper context ([Doshi-Velez & Kim 2017](https://arxiv.org/pdf/1702.08608.pdf)).
+A domain expert can also be called upon to explain model outputs in their proper context ([Doshi-Velez & Kim 2017](https://arxiv.org/pdf/1702.08608.pdf)).
 
 **Navigation Links:**  
 [Appendix Index](appendix_index.md)  
