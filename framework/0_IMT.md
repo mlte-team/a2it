@@ -30,4 +30,4 @@ This section is dedicated to ensuring that a team building a machine learning mo
     * Determine if changes need to be made to the model or the system. 
     * Do not continue to [System Dependent Model Testing](1_SDMT.md) (SDMT) until your team and the system team have agreed that the model and system are synchronized and requirements are satisfied at both the model and the system levels.
 
-#### References and additional materials can be found in the [Appendix](appendix/appendix_index.md).
+#### References and additional materials can be found in the [appendix](appendix/appendix_index.md).
