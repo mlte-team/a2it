@@ -243,4 +243,4 @@ print(f"Throughput: {t_put} requests per second")
     * Consider the tradeoffs inherent in your requirements, and consider that you might need to get feedback from customers and iterate through these properties with their requirements in mind. 
     * Do not continue to model production and system integration until your team and the system team have agreed that the model and system are synchronized and requirements are satisfied at both the model and the system levels.
 
-#### References and additional materials can be found in the [Appendix](appendix/appendix_index.md).
+#### References and additional materials can be found in the [appendix](appendix/appendix_index.md).
