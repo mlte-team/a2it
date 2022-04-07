@@ -1,21 +1,18 @@
 # System Dependent Model Testing
 ### Objective and Rationale
 Machine learning models and the systems into which they are integrated must be functional in their desired context, as well as robust to an array of potential circumstances.  
-This section lists properties that should be considered for model and system requirements and how those are prioritized, including weighing tradeoffs ([Ribeiro et al. 2020](https://homes.cs.washington.edu/~wtshuang/static/papers/2020-acl-checklist.pdf)).  
+To that end, this section lists properties that should be considered for model and system requirements. Each property covers a topic, concept, or specification that is critical to ensuring a system that employs machine learning components functions as intended. This section will also encourage model and system teams to communicate about the prioritization of their system's functionality, including weighing tradeoffs ([Ribeiro et al. 2020](https://homes.cs.washington.edu/~wtshuang/static/papers/2020-acl-checklist.pdf)).    
 
-TODO(Kyle): Add your definition of property here   
-
-Model and system teams should select the subset of these properties that are most relevant for your application. Ensure that you track the values of the metrics associated with these properties; we recommend existing experiment tracking services such as [MlFlow Tracking](https://mlflow.org/docs/latest/tracking.html) or [Weights and Biases Experiments](https://wandb.ai/site/experiment-tracking). 
+Model and system teams should select the subset of these properties that are most relevant for your application. Ensure you track the values of the metrics associated with these properties; we recommend existing experiment tracking services such as [MlFlow Tracking](https://mlflow.org/docs/latest/tracking.html) or [Weights and Biases Experiments](https://wandb.ai/site/experiment-tracking). 
 
 ## System Dependent Model Testing (SDMT) Properties
 
 **Structure**
 
-The properties are organized into four categories: 
+The properties are organized into categories: 
 - Functionality
 - Robustness
 - Costs
-- Scalability   
 
 Each of the properties is organized as follows:
 - Objective: A brief, one-sentence summary of the property in question.
@@ -27,9 +24,9 @@ Each of the properties is organized as follows:
 
 **Prediction Accuracy / Error Rate**
 - Objective: Assess the ability of the model to perform the task for which it is designed.
-- Metric: See task-appropriate model quality module.
+- Metric: Select a task-appropriate model quality evaluation metric.
 - Rationale: Prediction accuracy is self-evident.
-- Implementation: See task-appropriate model quality module.
+- Implementation: Select a task-appropriate implementation of your metric.
 
 **Fairness**
 - Objective: Data and models should be free of bias to avoid unfair treatment of certain groups, to ensure a fair distribution of benefits and costs, and to offer those affected an opportunity to seek redress against adverse decisions made by the system or the humans operating it ([Chouldechova & Roth 2018](https://arxiv.org/pdf/1810.08810.pdf)). 
@@ -49,24 +46,24 @@ Each of the properties is organized as follows:
 - Objective: Ensure that the model is robust to naturally occurring data challenges that it will encounter in the ambient conditions of the system ([Berghoff et al. 2021](https://link.springer.com/chapter/10.1007/978-3-030-79150-6_21)).
 - Metric: Depending on the identified data challenges and the task specific properties, model robustness can be measured by a robustness score across the perturbation parameter space. This is a metric that calculates the fraction of correctly identified robust samples in the dataset. Reassessing the model accuracy with augmented datasets is also a common metric for robustness ([Berghoff et al. 2021](https://link.springer.com/chapter/10.1007/978-3-030-79150-6_21)).
 - Rationale: Models implemented in a system will experience common data challenges like illumination, motion blue, occlusion, changes in perspective, and weather impacts. These perturbations affect the data and can have significant impacts on the quality of the model prediction which must be addressed before deployment ([Russell & Norivg](http://aima.cs.berkeley.edu)). For more metrics and information on general robustness, see [this](https://thirdeyedata.io/robustness-measurement-of-machine-learning-models-with-examples-in-python/) blog post.
-- Implementation: Dependent on the identified data challenges; see references section at the bottom of this page for more resources on dataset augmentation. The AutoAugment data augmentation policy proposed in ([Yin et. al 2019](https://proceedings.neurips.cc/paper/2019/file/b05b57f6add810d3b7490866d74c0053-Paper.pdf)) is a recommended starting point. The ([CheckList](https://homes.cs.washington.edu/~wtshuang/static/papers/2020-acl-checklist.pdf)) paper is also a useful tool to identify necessary capabilities of the model to promote robustness. For more resources on robustness, see the [robustness section](appendix/appendix_SDMT_s3.md) of the [appendix](appendix/appendix_index.md).  
+- Implementation: Dependent on the identified data challenges; see references section at the bottom of this page for more resources on dataset augmentation. The AutoAugment data augmentation policy proposed in ([Yin et. al 2019](https://proceedings.neurips.cc/paper/2019/file/b05b57f6add810d3b7490866d74c0053-Paper.pdf)) is a recommended starting point. The [Ribeiro et al.](https://homes.cs.washington.edu/~wtshuang/static/papers/2020-acl-checklist.pdf) paper is also a useful tool to identify necessary capabilities of the model to promote robustness. For more resources on robustness, see the [robustness section](appendix/appendix_SDMT_s3.md) of the [appendix](appendix/appendix_index.md).  
 
 **Robustness to Adversarial Attack**
 - Objective: Ensure that the model is robust to synthetic manipulation or targeted adversarial attacks ([Hendrycks et al.](https://arxiv.org/pdf/2109.13916.pdf) and [McGraw et al. 2020](https://berryvilleiml.com/docs/ara.pdf)).
-- Metric: There are performance metrics for adversarial robustness ([Buzhinsky et al. 2020](https://arxiv.org/pdf/2003.01993.pdf)) and existing benchmarked adversarial robustness tools such as ([CleverHans](https://github.com/cleverhans-lab/cleverhans), [FoolBox](https://github.com/bethgelab/foolbox), [ART](https://github.com/Trusted-AI/adversarial-robustness-toolbox)) that may be used. 
+- Metric: There are performance metrics for adversarial robustness ([Buzhinsky et al. 2020](https://arxiv.org/pdf/2003.01993.pdf)) and existing benchmarked adversarial robustness tools such as [CleverHans](https://github.com/cleverhans-lab/cleverhans), [Foolbox](https://github.com/bethgelab/foolbox), and [ART](https://github.com/Trusted-AI/adversarial-robustness-toolbox) that may be used. 
 - Rationale: A model deployed in a system may face different vulnerabilities (data pollution, physical infrastructure, etc.) and attacks (poisoning, extraction, inference, etc.) that can significantly degrade the performance, security, or safety of the model. 
-- Implementation: Dependent on the identified adversary most likely course of action (MLCOA) and most dangerous course of action (MDCOA); see the [robustness section](appendix/appendix_SDMT_s3.md) of the [appendix](appendix/appendix_index.md) for more resources on adversarial robustness. 
+- Implementation: Dependent on the identified most likely adversarial method of attack and the most dangerous adversarial method of attack; see the [robustness section](appendix/appendix_SDMT_s3.md) of the [appendix](appendix/appendix_index.md) for more resources on adversarial robustness. 
 
 **Robustness to Device-Generated Perturbations**  
 - Objective: Ensure that the model and the system are robust to perturbations resulting from devices that are part of the system. An example of a device-generated perturbation would be a camera taking unfocused video or pictures, making it impossible for the computer vision model to detect objects.
-- Metric: If sensor redundancy is determined necessary, establish a common representation of the input, and evaluate the system with simulated sensor failures. If robustness to single sensor noise is acceptable, determine the most likely sensor degradations and evaluate the mAP to a simulated degraded dataset.
-- Rationale: Models are often evaluated with full sensor availability. However, in a safety critical system, unexpected scenarios like sensor degradation or failure must be accounted for. 
-- Implementation: Depending on the system in which the model will be deployed, an option is to implement sensor redundancy. An architecture that uses multiple sensors to perform object detection jointly can provide robustness to sensor failure [Berntsson & Tonderski 2019](https://odr.chalmers.se/bitstream/20.500.12380/300780/1/master-thesis-report_berntsson-tonderski.pdf). Alternatively, if typical sensor degradation patterns are known or possible to predict, robustness tests specific to the sensor can be designed. [Seals 2019](https://trace.tennessee.edu/cgi/viewcontent.cgi?article=6960&context=utk_gradthes). For example, evaluating the mAP of the model against speckle noise, salt and pepper noise, contrast alterations, or Gaussian noise to determine robustness. 
+- Metric: If sensor redundancy is determined to be necessary, establish a common representation of the input and evaluate the system with simulated sensor failures. If robustness to single sensor noise is acceptable, determine the most likely sensor degradations and evaluate the mAP on a simulated degraded dataset.
+- Rationale: Models are often evaluated with full sensor availability. However, in a safety-critical system, unexpected scenarios like sensor degradation or failure must be accounted for. 
+- Implementation: Depending on the system in which the model will be deployed, an option is to implement sensor redundancy. An architecture that uses multiple sensors to perform object detection jointly can provide robustness to sensor failure ([Berntsson & Tonderski 2019](https://odr.chalmers.se/bitstream/20.500.12380/300780/1/master-thesis-report_berntsson-tonderski.pdf)). Alternatively, if typical sensor degradation patterns are known or possible to predict, robustness tests specific to the sensor can be designed ([Seals 2019](https://trace.tennessee.edu/cgi/viewcontent.cgi?article=6960&context=utk_gradthes)). For example, evaluating the mAP of the model against speckle noise, salt and pepper noise, contrast alterations, or Gaussian noise can be used to determine robustness. 
 
 **Security**
 - Objective: Ensure that the model is insulated to compromise from internal error.
-- Metric: The metric by which security is measured will depend on what risks are most likely for your given model. Areas of focus could include adversarial attacks (as described above), reproducibility, overfitting, and output integrity among others. See [McGraw et al. 2020](https://berryvilleiml.com/docs/ara.pdf) for a comprehensive list of risks and recommended methods of addressing them.
-- Rationale: A model and the system in which it is encased have numerous risk areas that can be traced back to intrinsic design flaws [McGraw et al. 2020](https://berryvilleiml.com/docs/ara.pdf).
+- Metric: The metric by which security is measured will depend on what risks are most likely for your given model. Areas of focus could include adversarial attacks (as described above), reproducibility, overfitting, and output integrity among others. See [McGraw et al.](https://berryvilleiml.com/docs/ara.pdf) for a comprehensive list of risks and recommended methods of addressing them.
+- Rationale: A model and the system in which it is encased have numerous risk areas that can be traced back to intrinsic design flaws ([McGraw et al. 2020](https://berryvilleiml.com/docs/ara.pdf)).
 - Implementation: Prioritize risks based on your model and system, and address them in order of probability that they occur.  
 
 ### Costs
@@ -231,15 +228,10 @@ print(f"Throughput: {t_put} requests per second")
 - Rationale: For large-scale machine learning applications, energy consumption may be a major driver in the total cost of development and maintenance.
 - Implementation: Energy consumption and power requirements are a relatively-new consideration in the field of machine learning. Accordingly, methods for convenient and accurate measurement are limited.
 
-### Scalability
-- Model size as a function of data size
-- Training time as a function of data size
-- Training cost (CPU, memory) as a function of data size
-
 ### Next Steps
 * Meet with the system team and discuss each property result.
     * The results of each portion of SDMT along with your list of model inputs, outputs, and requirements should be discussed in the context of the system.
-    * Determine if changes need to be made to the model or the system.
+    * Determine if changes need to be made to the model or the system. It is highly likely that teams will need to iterate through this SDMT process several times given the inherent tradeoffs and prioritization that comes with integrating machine learning into systems.
     * Consider the tradeoffs inherent in your requirements, and consider that you might need to get feedback from customers and iterate through these properties with their requirements in mind. 
     * Do not continue to model production and system integration until your team and the system team have agreed that the model and system are synchronized and requirements are satisfied at both the model and the system levels.
 
