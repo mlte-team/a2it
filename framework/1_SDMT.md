@@ -43,13 +43,6 @@ Each of the properties is organized as follows:
 - Rationale: Depending on the system purpose, it may be critical for the system to be explainable and understandable.
 - Implementation: Options include, among others: intrinsic interpretability in which a model is self explanatory, and post-hoc interpretability where another model is created to explain outputs from the first ([Du et al. 2019](https://arxiv.org/pdf/1808.00033.pdf)). For more resources on interpretability, see the [fairness & interpretability section](appendix/appendix_SDMT_s2.md) of the [appendix](appendix/appendix_index.md).
 
-**Stability**  
-TODO(Kate): Write/develop this property
-- Objective: Ensure that the system continues to address the problem in the future even if there is "concept drift".
-- Metric:
-- Rationale: 
-- Implementation: 
-
 ### Robustness
 
 **Robustness to Naturally Occurring Data Challenges**
@@ -249,25 +242,9 @@ TODO(Kyle): How to measure memory consumption in inference-relevant environment?
 TODO(Kyle): Baseline energy measurements with PMC.
 
 ### Scalability
-
-TODO:
 - Model size as a function of data size
 - Training time as a function of data size
 - Training cost (CPU, memory) as a function of data size
-
-**Resilience to Failure**  
-TODO(All): Write/develop this property
-- Objective: Ensure that the system automates reaction to failure so that it is handled in a safe manner.
-- Metric:
-- Rationale: 
-- Implementation: 
-
-**Adaptability**  
-TODO(All): Write/develop this property
-- Objective: When scaling a system, making components that are mulit-use or adaptable goes a long way towards ensuring that a system is resilient and raising the possibility of reallocating a system if the need is alleviated in the future. An example of this would be an automated targeting system that works on both an Infantry Fighting Vehicle and a tank.
-- Metric:
-- Rationale: 
-- Implementation: 
 
 ### Next Steps
 * Meet with the system team and discuss each property result.
