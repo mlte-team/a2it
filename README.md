@@ -1,6 +1,6 @@
 # Army Artificial Intelligence Testing (A2IT)
 
-![Draft Diagram](https://github.com/turingcompl33t/a2it/blob/08d87f070d7371fa83a376bff566ea423bf8527c/Draft%20Diagram.jpg)
+![Diagram](https://github.com/mlte-team/a2it/blob/master/MLTE%20Diagram.png)
 
 This repository defines a framework for testing and evaluating Army machine learning and artificial intelligence models. It is intended to be used by the team creating the model in coordiation with the team who oversees and/or will implement the model into the larger system.  
 
