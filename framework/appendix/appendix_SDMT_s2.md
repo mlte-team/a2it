@@ -8,6 +8,10 @@
 - How to consider the dynamic effects of decisions on a system: [Downstream Effects of Affirmative Action](https://arxiv.org/pdf/1808.09004.pdf) and [Delayed Impact of Fair Machine Learning](http://proceedings.mlr.press/v80/liu18c/liu18c.pdf)
 - If you are familiar with the bias or skew of the data, an option is to use rank-preserving procedures for repairing features to reduce or remove pairwise dependence with the protected attribute: [Certifying and Removing Disparate Impact](https://arxiv.org/pdf/1412.3756v3.pdf)
 - A general discussion of bias and fairness in machine learning: [Ch 8 Bias and Fairness](http://ciml.info/dl/v0_99/ciml-v0_99-ch08.pdf) from [A Course in Machine Learning](http://ciml.info)
+- Different definitions and examples of bias, discrimination, and fairness, as well as examples of fair versions of a number of types of machine learning models: [A Survey on Bias and Fairness in Machine Learning](https://arxiv.org/pdf/1908.09635.pdf)
+- Understanding, mitigating, and accounting for bias: [Bias in Data-driven AI Systems - An Introductory Survey](https://arxiv.org/pdf/2001.09762v1.pdf)
+- Consider and articulate explicitly the assumptions about the circumstances and data being modeled: [The
+(Im)possibility of Fairness:Different Value Systems Require Different Mechanisms For Fair Decision Making](https://dl.acm.org/doi/pdf/10.1145/3433949)
 
 #### Questions:
 * Are subsets or groups within your dataset equally likely to be classified or predicted?
