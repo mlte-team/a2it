@@ -231,7 +231,7 @@ print(f"Throughput: {t_put} requests per second")
 ### Next Steps
 * Meet with the system team and discuss each property result.
     * The results of each portion of SDMT along with your list of model inputs, outputs, and requirements should be discussed in the context of the system.
-    * Determine if changes need to be made to the model or the system. It is highly likely that teams will need to iterate through this SDMT process several times given the inherent tradeoffs and prioritization that comes with integrating machine learning into systems.
+    * Determine if changes need to be made to the model or the system. It is highly likely that teams will need to iterate through this SDMT process several times or return to IMT given the inherent tradeoffs and prioritization that comes with integrating machine learning into systems.
     * Consider the tradeoffs inherent in your requirements, and consider that you might need to get feedback from customers and iterate through these properties with their requirements in mind. 
     * Do not continue to model production and system integration until your team and the system team have agreed that the model and system are synchronized and requirements are satisfied at both the model and the system levels.
 
