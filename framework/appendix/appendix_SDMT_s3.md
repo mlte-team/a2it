@@ -29,7 +29,7 @@ This section includes questions, considerations, and methods for addressing synt
 * How may a human approach the task in the face of synthetic modifications? Is edge detection necessary to complete the task?
 * Is there existing knowledge or theories about the task that can be leveraged?
 
-#### Considerations and Methods:
+#### Capability Approach:
 * Identify critical computer vision capabilities of the model to evaluate. See [Ribeiro et al.](https://homes.cs.washington.edu/~wtshuang/static/papers/2020-acl-checklist.pdf) for content on identifying capabilities and developing task tests. Favor the model that has best learned the most relevant capabilities. Computer vision capabilities to consider testing include: 
 *   Identifying shape
 *   Robustness to altered texture
