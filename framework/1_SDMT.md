@@ -31,7 +31,7 @@ Each of the properties is organized as follows:
 **Fairness**
 - Objective: Data and models should be free of bias to avoid unfair treatment of certain groups, to ensure a fair distribution of benefits and costs, and to offer those affected an opportunity to seek redress against adverse decisions made by the system or the humans operating it ([Chouldechova & Roth 2018](https://arxiv.org/pdf/1810.08810.pdf)). 
 - Metric: Statistical metrics of fairness include raw positive classification rate ([Feldman et al. 2015](https://arxiv.org/pdf/1412.3756v3.pdf)), false positive and false negative rates, or positive predictive value ([Chouldechova 2017](https://arxiv.org/pdf/1703.00056.pdf)). However, every fairness metric includes tradeoffs, so if this is important to the system then the model and system teams must have a conversation about the overall effects and the appropriate tradeoffs to ensure fairness.
-- Rationale: Biased models result in a degraded user experience for certain sub-populations, and can damage user trust in a system.
+- Rationale: Biased models result in a [degraded user experience](https://dl.acm.org/doi/pdf/10.1145/3290605.3300830) for certain sub-populations, and can damage user trust in a system.
 - Implementation: Start by identifying the protected attribute in your dataset, and then determine what fairness measure the model and system should prioritize. Depending on those two priorities and their respective tradeoffs, see the [fairness & interpretability section](appendix/appendix_SDMT_s2.md) of the [appendix](appendix/appendix_index.md) for more resources on fairness.
 
 **Interpretability**
@@ -70,7 +70,7 @@ Each of the properties is organized as follows:
 
 **Model Size (Static)**
 - Objective: Measure the static size of a trained model.
-- Metric: The storage requirement for the model in bytes or some multiple thereof (e.g. kilobytes, megabytes, etc.). This metric is absolute.
+- Metric: The storage requirement for the model in bytes or some multiple thereof (e.g., kilobytes, megabytes, etc.). This metric is absolute.
 - Rationale: A model’s static size is its size at rest, when it is ready to perform inference. The static size of the model may limit the infrastructure on which it may be deployed. 
 - Implementation: Measure the on-disk size of the model static format. The exact implementation may vary based on the development platform and environment available. Examples of potential implementations are provided below.
 
@@ -106,15 +106,15 @@ print(size)
 	
 **Model Size (Dynamic)**
 - Objective: Measure the dynamic size of a trained model in terms of its storage requirements.
-- Metric: The storage requirement for the model in bytes or some multiple thereof (e.g. kilobytes, megabytes, etc.). This metric is absolute.
+- Metric: The storage requirement for the model in bytes or some multiple thereof (e.g., kilobytes, megabytes, etc). This metric is absolute.
 - Rationale: A model’s dynamic size is its size in a serialized form that is appropriate for transport (e.g. via removable media, or over the network). The dynamic size of the model determines the difficulty (time requirement) of transporting the model. This concern manifests both internally during development of an automated training pipeline as well as externally during deployment. The dynamic size of a model may depend on the choice of serialization format, compression, and encryption, among other factors.
 - Implementation: See implementation for _Model Size (Static)_.
 
 **Training Time**
 - Objective: Measure the total time required to train the model.
-- Metric: The wall-clock time required to run the model training process in seconds or some multiple thereof (e.g. minutes, hours, etc.). This metric is relative.
+- Metric: The wall-clock time required to run the model training process in seconds or some multiple thereof (e.g., minutes, hours, etc.). This metric is relative.
 - Rationale: Training time is a critical constraint on the machine learning pipeline. Long-training times limit the ability of the ML engineer to iterate on the model and make improvements during development. Long-training times also limit the frequency with which new models may be deployed to production. 
-- Implementation: The wall-clock time required to train a machine learning model is highly-dependent upon the system on which training occurs. A system with better hardware properties (e.g. CPU cores, clock frequency, cache capacity, RAM capacity) trains faster than a weaker one. Whether or not a GPU is available, and the quality thereof, is another consideration. When the input dataset is large, storage system performance may become the bottleneck. For models that require distributed training, cluster properties confound these measurements. This variability necessitates a common benchmark infrastructure for model training time.
+- Implementation: The wall-clock time required to train a machine learning model is highly-dependent upon the system on which training occurs. A system with better hardware properties (e.g., CPU cores, clock frequency, cache capacity, RAM capacity) trains faster than a weaker one. Whether or not a GPU is available, and the quality thereof, is another consideration. When the input dataset is large, storage system performance may become the bottleneck. For models that require distributed training, cluster properties confound these measurements. This variability necessitates a common benchmark infrastructure for model training time.
 
 **Training CPU Consumption**
 - Objective: Measure the peak and average CPU utilization during model training. 
@@ -135,7 +135,7 @@ print(stats)
 
 **Training Memory Consumption**
 - Objective: Measure the peak and average memory consumption during model training.
-- Metric: The volume of memory consumed in bytes or some multiple thereof (kilobytes, megabytes, etc.). This metric is absolute. 
+- Metric: The volume of memory consumed in bytes or some multiple thereof (kilobytes, megabytes, etc). This metric is absolute. 
 - Rationale: The memory requirements of model training determine the load that is places on the system during the training procedure. Typically, we are not concerned with the efficiency of other jobs that run concurrently on the same machine during model training. Therefore, the peak and average memory consumption of the training process are primarily relevant because they determine the resource requirements necessary to train efficiently.  This metric is not directly applicable to a distributed training procedure.
 - Implementation: Measure the memory consumption of the process running the training procedure. The measurement procedure will vary depending on the training environment.
 
@@ -154,7 +154,7 @@ print(stats)
 - Objective: Measure the energy consumption of the model training process.
 - Metric: The energy consumed by the training process in joules (total power consumption over a time interval).
 - Rationale: For large-scale machine learning applications, energy consumption may be a major driver in the total cost of development and maintenance. The model training process is frequently the most energy-intensive stage of the machine learning pipeline.
-- Implementation: Energy consumption and power requirements are a relatively-new consideration in the field of machine learning. Accordingly, methods for convenient and accurate measurement are limited.
+- Implementation: Energy consumption and power requirements are a relatively new consideration in the field of machine learning. Accordingly, methods for convenient and accurate measurement are limited.
 
 **Inference Latency (Mean)**
 - Objective: Measure the mean inference latency of a trained model.
@@ -196,7 +196,7 @@ print(f"Tail latency: {latency}ms")
 - Objective: Measure the inference throughput of a trained model.
 - Metric: The number of inference requests completed in one second. This metric is relative.
 - Rationale: For some applications, service throughput is a more important metric than service latency. In such cases, we may be unconcerned with the latency of inference requests to the model and more concerned with its throughput.
-- Implementation: Measure the throughput of the model by providing it with a stream of many inference requests, computing the time required to complete all of these requests, and dividing the number of completed requests by this duration. The measurement procedure will vary based on the 
+- Implementation: Measure the throughput of the model by providing it with a stream of many inference requests, computing the time required to complete all of these requests, and dividing the number of completed requests by this duration. The measurement procedure will vary based on the development environment.
 
 Measure the throughput of model inference with the `mlte` package.
 
@@ -218,7 +218,7 @@ print(f"Throughput: {t_put} requests per second")
 
 **Inference Memory Consumption**
 - Objective: Measure the peak and average memory consumption during model inference.
-- Metric: The volume of memory consumed in bytes or some multiple thereof (kilobytes, megabytes, etc.). This metric is absolute. 
+- Metric: The volume of memory consumed in bytes or some multiple thereof (kilobytes, megabytes, etc). This metric is absolute. 
 - Rationale: The memory requirements of model inference determine the load that is places on the system during inference. This is a key determinant in the memory resources required for model deployment. For example, a model for which inference is not memory-intensive may be deployed to an instance with relatively light memory resources. This might allow for investment in other resources, such as core count, for the instance to which the model is deployed. 
 - Implementation: Measure the memory consumption of the process during the inference procedure.
 
@@ -226,7 +226,7 @@ print(f"Throughput: {t_put} requests per second")
 - Objective: Measure the energy consumption of the model inference process.
 - Metric: The energy consumed by the inference process in joules (total power consumption over a time interval).
 - Rationale: For large-scale machine learning applications, energy consumption may be a major driver in the total cost of development and maintenance.
-- Implementation: Energy consumption and power requirements are a relatively-new consideration in the field of machine learning. Accordingly, methods for convenient and accurate measurement are limited.
+- Implementation: Energy consumption and power requirements are a relatively new consideration in the field of machine learning. Accordingly, methods for convenient and accurate measurement are limited.
 
 ### Next Steps
 * Meet with the system team and discuss each property result.
