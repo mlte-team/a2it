@@ -11,7 +11,8 @@
 - Different definitions and examples of bias, discrimination, and fairness, as well as examples of fair versions of a number of types of machine learning models: [A Survey on Bias and Fairness in Machine Learning](https://arxiv.org/pdf/1908.09635.pdf)
 - Understanding, mitigating, and accounting for bias: [Bias in Data-driven AI Systems - An Introductory Survey](https://arxiv.org/pdf/2001.09762v1.pdf)
 - Consider and articulate explicitly the assumptions about the circumstances and data being modeled: [The
-(Im)possibility of Fairness:Different Value Systems Require Different Mechanisms For Fair Decision Making](https://dl.acm.org/doi/pdf/10.1145/3433949)
+(Im)possibility of Fairness: Different Value Systems Require Different Mechanisms For Fair Decision Making](https://dl.acm.org/doi/pdf/10.1145/3433949)
+- The importance of having procedures, policies, and monitoring methods in place for machine learning: [Towards a Standard for Identifying and Managing Bias in Artificial Intelligence](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.1270.pdf)
 
 #### Questions:
 * Are subsets or groups within your dataset equally likely to be classified or predicted?
