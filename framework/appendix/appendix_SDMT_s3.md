@@ -6,12 +6,12 @@ This section includes questions, considerations, and methods for addressing the 
 
 #### Questions:
 * What data challenges may occur when your model is deployed to the system? Could your model face: 
-*   Significant changes in illumination or color transformations (brightness, contrast, saturation, hue, grayscale, color-depth)?
-*   Motion blur or other pixel perturbations?
-*   Occlusion of the target object?
-*   Changes in perspective (rotation, translation, scaling, shearing, blurring, sharpening, flipping)?
-*   Weather impacts? ([Russell & Norvig 2003](http://aima.cs.berkeley.edu), Ch. 25)
-*   Other system specific conditions? (For example, stickers on objects or damaged objects)
+    *    Significant changes in illumination or color transformations (brightness, contrast, saturation, hue, grayscale, color-depth)?
+    *   Motion blur or other pixel perturbations?
+        *   Occlusion of the target object?
+    *   Changes in perspective (rotation, translation, scaling, shearing, blurring, sharpening, flipping)?
+    *   Weather impacts? ([Russell & Norvig 2003](http://aima.cs.berkeley.edu), Ch. 25)
+    *   Other system specific conditions? (For example, stickers on objects or damaged objects)
 * What are the typical and atypical system conditions in which your model will be deployed?
 * How may data collection processes or physical sensors be degraded with time, use, or damage?
 * Are there any extreme distribution shifts or long tail events that could cause large accuracy drops? ([Hendrycks et al. 2021](https://arxiv.org/pdf/2109.13916.pdf))
@@ -35,8 +35,8 @@ This section includes questions, considerations, and methods for addressing synt
 *   Robustness to altered texture
 *   Robustness to novel backgrounds
 *   Segmentation into regions
-* Test types include minimum functionality, invariance, and directional expectation
-* Curate test data through mutating existing inputs, generating new inputs, or obtaining new inputs.  
+* Teams can test types including minimum functionality, invariance, and directional expectation
+* Teams can curate test data through mutating existing inputs, generating new inputs, or obtaining new inputs.  
 
 ## Robustness to Adversarial Attack
 This section includes questions, considerations, and methods for determining how an adversary may target a machine learning system. Ensuring robustness in this domain includes creating adversarial test cases and evaluating expected versus actual results.
@@ -44,7 +44,7 @@ This section includes questions, considerations, and methods for determining how
 #### Questions:
 * How is an adversary most likely going to attempt to break your model?
 * What would be the most dangerous method an adversary could use to break your model?
-* Did you consider different types and natures of vulnerabilities such as data pollution, physical infrastructure, and cyber attacks? ([Hendrycks et al. 2021](https://arxiv.org/pdf/2109.13916.pdf))
+* Did you consider different types and natures of vulnerabilities such as data pollution, physical infrastructure, and cyber-attacks? ([Hendrycks et al. 2021](https://arxiv.org/pdf/2109.13916.pdf))
 * What is the threat of evasion attacks, poisoning attacks, extraction attacks, and inference attacks, and does the model need to be prepared to address these? ([ART](https://github.com/Trusted-AI/adversarial-robustness-toolbox))
 * Did you consult with the systems team to put measures in place to ensure integrity and resilience of the system against attacks?
 
